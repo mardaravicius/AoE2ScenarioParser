@@ -237,4 +237,5 @@ venv/
 
 AoE2ScenarioParser/differences.txt
 
+# Todo: Decide if we should keep this or not?
 AoE2ScenarioParser/**/*.c
