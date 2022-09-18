@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import List, Any, Type
 
 import AoE2ScenarioParser.datasets.conditions as condition_dataset
 import AoE2ScenarioParser.datasets.effects as effect_dataset
@@ -54,8 +54,8 @@ class Trigger(AoE2Object, TriggerComponent):
                  short_description_stid: int = -1,
                  display_on_screen: int = 0,
                  description_order: int = 0,
-                 enabled: int = 1,
-                 looping: int = 0,
+                 enabled: int | bool = 1,
+                 looping: int | bool = 0,
                  header: int = 0,
                  mute_objectives: int = 0,
                  conditions: List[Condition] = None,
@@ -84,8 +84,8 @@ class Trigger(AoE2Object, TriggerComponent):
         self.short_description_stid: int = short_description_stid
         self.display_on_screen: int = display_on_screen
         self.description_order: int = description_order
-        self.enabled: int = enabled
-        self.looping: int = looping
+        self.enabled: bool = bool(enabled)
+        self.looping: bool = bool(looping)
         self.header: int = header
         self.mute_objectives: int = mute_objectives
         self._condition_hash = hash_list(conditions)
@@ -135,20 +135,20 @@ class Trigger(AoE2Object, TriggerComponent):
         self._effect_order = val
 
     @property
-    def conditions(self) -> List[Condition]:
+    def conditions(self) -> Type[List[Condition]]:
         return self._conditions
 
     @conditions.setter
-    def conditions(self, val: List[Condition]) -> None:
+    def conditions(self, val: Type[List[Condition]]) -> None:
         self._conditions = UuidList(self._uuid, val)
         self.condition_order = list(range(0, len(val)))
 
     @property
-    def effects(self) -> List[Effect]:
+    def effects(self) -> Type[List[Effect]]:
         return self._effects
 
     @effects.setter
-    def effects(self, val: List[Effect]) -> None:
+    def effects(self, val: Type[List[Effect]]) -> None:
         self._effects = UuidList(self._uuid, val)
         self.effect_order = list(range(0, len(val)))
 

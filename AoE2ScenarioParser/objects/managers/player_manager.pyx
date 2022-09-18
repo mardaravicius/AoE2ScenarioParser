@@ -70,7 +70,7 @@ class PlayerManager(AoE2Object):
             _allied_victories: List[int],
             _starting_ages: List[int],
             _base_priorities: List[int],
-            _pop_caps: List[int],
+            _pop_caps: List[int] | None,
             _player_data_4: List[PlayerDataFour],
             _player_data_3: List[PlayerDataThree],
             **kwargs
@@ -110,7 +110,7 @@ class PlayerManager(AoE2Object):
         }
 
         param_sets = [(no_gaia_params, None), (gaia_first_params, True), (gaia_last_params, False)]
-        player_attributes: Dict[int, Dict] = {i: {'player_id': PlayerId(i)} for i in range(9)}
+        player_attributes: Dict[int, Dict[Any]] = {i: {'player_id': PlayerId(i)} for i in range(9)}
         for param_set, gaia_first in param_sets:
             for key, lst in param_set.items():
                 _spread_player_attributes(player_attributes, key, lst, gaia_first)
@@ -365,9 +365,9 @@ def _player_list(gaia_first: None | bool = True) -> List[PlayerId]:
 
 
 def _spread_player_attributes(
-        player_attributes: Dict,
+        player_attributes: Dict[int, Dict[Any]],
         key: str,
-        lst: List,
+        lst: List[Any],
         gaia_first: None | bool = True
 ) -> None:
     """

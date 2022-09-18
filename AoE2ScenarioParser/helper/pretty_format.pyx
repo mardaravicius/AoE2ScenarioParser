@@ -1,4 +1,4 @@
-from typing import List, Type, Tuple
+from typing import List, Type, Tuple, Any, Dict
 
 from AoE2ScenarioParser.helper.string_manipulations import create_inline_line, add_tabs
 
@@ -8,7 +8,7 @@ _default_inline_types: List[Tuple[Type, int]] = [
 ]
 
 
-def pretty_format_list(plist: List, inline_types: List[Tuple[Type, int]] = None):
+def pretty_format_list(plist: List[Any], inline_types: List[Tuple[Type, int]] = None):
     if len(plist) == 0:
         return "[]"
     if inline_types is None:
@@ -31,7 +31,7 @@ def pretty_format_list(plist: List, inline_types: List[Tuple[Type, int]] = None)
     return return_string + "]"
 
 
-def pretty_format_dict(pdict: dict):
+def pretty_format_dict(pdict: Dict[Any, Any]):
     return_string = "{\n"
     for key, value in pdict.items():
         if type(value) is dict:

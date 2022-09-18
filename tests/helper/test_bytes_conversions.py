@@ -40,20 +40,20 @@ class Test(TestCase):
         self.assertRaises(AttributeError, lambda x: str_to_bytes(x), b'Test String')
 
     def test_bytes_to_int(self):
-        self.assertEqual(bytes_to_int(b'\x20\x81', signed=True), -32480)
-        self.assertEqual(bytes_to_int(b'\x20\x81', signed=False), 33056)
-        self.assertEqual(bytes_to_int(b'\x20\x71', signed=True), 28960)
-        self.assertEqual(bytes_to_int(b'\x20\x71', signed=False), 28960)
+        self.assertEqual(bytes_to_int(b'\x20\x81', signed_=True), -32480)
+        self.assertEqual(bytes_to_int(b'\x20\x81', signed_=False), 33056)
+        self.assertEqual(bytes_to_int(b'\x20\x71', signed_=True), 28960)
+        self.assertEqual(bytes_to_int(b'\x20\x71', signed_=False), 28960)
 
     def test_int_to_bytes(self):
-        self.assertEqual(int_to_bytes(100, 1, signed=False), b'\x64')
-        self.assertEqual(int_to_bytes(100, 1, signed=True), b'\x64')
+        self.assertEqual(int_to_bytes(100, 1, signed_=False), b'\x64')
+        self.assertEqual(int_to_bytes(100, 1, signed_=True), b'\x64')
         self.assertRaises(OverflowError, int_to_bytes, -100, 1, signed=False)
-        self.assertEqual(int_to_bytes(-100, 1, signed=True), b'\x9c')
+        self.assertEqual(int_to_bytes(-100, 1, signed_=True), b'\x9c')
 
-        self.assertEqual(int_to_bytes(100, 2, signed=False), b'\x64\x00')
-        self.assertEqual(int_to_bytes(100, 3, signed=False), b'\x64\x00\x00')
-        self.assertEqual(int_to_bytes(100, 4, signed=False), b'\x64\x00\x00\x00')
+        self.assertEqual(int_to_bytes(100, 2, signed_=False), b'\x64\x00')
+        self.assertEqual(int_to_bytes(100, 3, signed_=False), b'\x64\x00\x00')
+        self.assertEqual(int_to_bytes(100, 4, signed_=False), b'\x64\x00\x00\x00')
 
     def test_bytes_to_float(self):
         self.assertEqual(bytes_to_float(b'\x01\x00\x00\x00'), 1.401298464324817e-45)

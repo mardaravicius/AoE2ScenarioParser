@@ -58,7 +58,7 @@ def retrieve_bytes(igenerator: IncrementalGenerator, retriever: 'Retriever') -> 
                 retrieved_bytes.append(igenerator.get_bytes(var_len))
             else:  # String, Stored as: (signed int (n), string (string_length = n))
                 int_bytes = igenerator.get_bytes(var_len)
-                string_length = bytes_to_int(int_bytes, signed=True)
+                string_length = bytes_to_int(int_bytes, signed_=True)
                 string_bytes = igenerator.get_bytes(string_length)
                 retrieved_bytes.append(int_bytes + string_bytes)
     except EndOfFileError:

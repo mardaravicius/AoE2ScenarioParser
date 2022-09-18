@@ -1,4 +1,4 @@
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Type
 
 from AoE2ScenarioParser.datasets.terrains import TerrainId
 from AoE2ScenarioParser.helper.helper import i_to_xy
@@ -20,7 +20,7 @@ class TerrainTile(AoE2Object):
         RetrieverObjectLink("_index", retrieve_history_number=0),
     ]
 
-    def __init__(self, terrain_id: int = TerrainId.GRASS_1, elevation: int = 0, layer: int = -1, _index: int = - 1,
+    def __init__(self, terrain_id: Type[int] = TerrainId.GRASS_1, elevation: int = 0, layer: int = -1, _index: int = - 1,
                  **kwargs):
         self.terrain_id = terrain_id
         self.elevation = elevation

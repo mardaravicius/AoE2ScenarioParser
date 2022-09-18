@@ -1,7 +1,6 @@
-from typing import List, Any
+from typing import List, Any, Type
 
-
-def hash_list(lst: List):
+def hash_list(lst: Type[List[Any]]):
     return hash(tuple(lst))
 
 
@@ -35,7 +34,7 @@ def update_order_array(order_array: List[int], supposed_length: int) -> None:
 
 
 # Written by: Ned Batchelder @ https://stackoverflow.com/a/312464/7230293
-def list_chuncks(lst, n):
+def list_chuncks(lst: List[Any], n: int):
     """Yield successive n-sized chunks from lst."""
     for i in range(0, len(lst), n):
         yield lst[i:i + n]

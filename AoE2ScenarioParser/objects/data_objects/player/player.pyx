@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Optional, List, overload
+from typing import Optional, List, overload, Type
 
 from AoE2ScenarioParser.datasets.dataset_enum import dataset_or_value
 from AoE2ScenarioParser.datasets.object_support import StartingAge, Civilization
@@ -43,18 +43,18 @@ class Player(AoE2Object):
 
     def __init__(
             self,
-            player_id: int,
+            player_id: Type[int],
             starting_age: int,
             lock_civ: int,
             food: int,
             wood: int,
             gold: int,
             stone: int,
-            color: int,
+            color: Type[int],
             active: bool,
             human: bool,
-            civilization: int,
-            architecture_set: int,
+            civilization: Type[int],
+            architecture_set: Type[int],
 
             # Optionals due to GAIA not having such value
             population_cap: Optional[int] = None,

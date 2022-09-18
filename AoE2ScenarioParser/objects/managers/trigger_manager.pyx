@@ -2,16 +2,16 @@ from __future__ import annotations
 
 import copy
 from enum import IntEnum
-from typing import List, Dict
+from typing import List, Dict, Tuple, Type
 
 from AoE2ScenarioParser.datasets.effects import EffectId
 from AoE2ScenarioParser.datasets.players import PlayerId
-from AoE2ScenarioParser.helper import helper
 from AoE2ScenarioParser.helper.helper import value_is_valid
 from AoE2ScenarioParser.helper.list_functions import hash_list, list_changed, update_order_array
 from AoE2ScenarioParser.helper.printers import warn
 from AoE2ScenarioParser.helper.string_manipulations import add_tabs
 from AoE2ScenarioParser.objects.aoe2_object import AoE2Object
+from AoE2ScenarioParser.objects.data_objects.condition import Condition
 from AoE2ScenarioParser.objects.data_objects.effect import Effect
 from AoE2ScenarioParser.objects.data_objects.trigger import Trigger
 from AoE2ScenarioParser.objects.support.enums.group_by import GroupBy
@@ -19,6 +19,8 @@ from AoE2ScenarioParser.objects.support.trigger_ce_lock import TriggerCELock
 from AoE2ScenarioParser.objects.support.trigger_select import TriggerSelect
 from AoE2ScenarioParser.objects.support.uuid_list import UuidList
 from AoE2ScenarioParser.sections.retrievers.retriever_object_link import RetrieverObjectLink
+
+from AoE2ScenarioParser.helper import helper
 
 
 class TriggerManager(AoE2Object):
@@ -30,13 +32,13 @@ class TriggerManager(AoE2Object):
     ]
 
     def __init__(self,
-            triggers: List[Trigger],
+            triggers: Type[List[Trigger]],
             trigger_display_order: List[int],
             **kwargs
     ):
         super().__init__(**kwargs)
 
-        self.triggers: List[Trigger] = triggers
+        self.triggers: Type[List[Trigger]] = triggers
         self.trigger_display_order: List[int] = trigger_display_order
         self._trigger_hash = hash_list(triggers)
 
@@ -45,7 +47,7 @@ class TriggerManager(AoE2Object):
         return self._triggers
 
     @triggers.setter
-    def triggers(self, value: List[Trigger]) -> None:
+    def triggers(self, value: Type[List[Trigger]]) -> None:
         value = UuidList(self._uuid, value, on_update_execute_entry=self._update_triggers_uuid)
 
         self._trigger_hash = hash_list(value)
@@ -481,8 +483,8 @@ class TriggerManager(AoE2Object):
             looping: bool | None = None,
             header: bool | None = None,
             mute_objectives: bool | None = None,
-            conditions: List | None = None,
-            effects: List | None = None
+            conditions: List[Condition] | None = None,
+            effects: List[Effect] | None = None
     ) -> Trigger:
         """
         Adds a new trigger to the scenario.
@@ -662,7 +664,7 @@ class TriggerManager(AoE2Object):
         return return_string
 
     @staticmethod
-    def _find_alterable_ce(trigger, trigger_ce_lock) -> (List[int], List[int]):
+    def _find_alterable_ce(trigger, trigger_ce_lock) -> Tuple[List[int], List[int]]:
         lock_conditions = trigger_ce_lock.lock_conditions if trigger_ce_lock is not None else False
         lock_effects = trigger_ce_lock.lock_effects if trigger_ce_lock is not None else False
         lock_condition_type = trigger_ce_lock.lock_condition_type if trigger_ce_lock is not None else []
@@ -681,7 +683,7 @@ class TriggerManager(AoE2Object):
                 if i not in lock_effect_ids and effect.effect_type not in lock_effect_type:
                     alter_effects.append(i)
 
-        return alter_conditions, alter_effects
+        return (alter_conditions, alter_effects)
 
     @staticmethod
     def _find_trigger_tree_nodes(trigger: Trigger) -> List[int]:

@@ -3,18 +3,25 @@ from __future__ import annotations
 import copy
 import math
 from enum import Enum
-from typing import Dict, TYPE_CHECKING, List, Tuple, Iterable
+from typing import Dict, TYPE_CHECKING, List, Tuple, Iterable, TypeVar, Type
 from uuid import UUID
-
-from ordered_set import OrderedSet
 
 from AoE2ScenarioParser.helper.helper import xy_to_i, validate_coords
 from AoE2ScenarioParser.objects.support.tile import Tile
+from ordered_set import OrderedSet
+
 from AoE2ScenarioParser.scenarios.scenario_store import getters
 
 if TYPE_CHECKING:
     from AoE2ScenarioParser.objects.data_objects.terrain_tile import TerrainTile
     from AoE2ScenarioParser.scenarios.aoe2_scenario import AoE2Scenario
+
+    # Make Cython happy :)
+    # (Doesn't like OrderedSet with any form of generics)
+    OrderedSetTileOrTerrainTile: Type[OrderedSet[Tile | 'TerrainTile']] = OrderedSet[Tile | 'TerrainTile']
+    OrderedSetTile: Type[OrderedSet[Tile]] = OrderedSet[Tile]
+
+
 
 
 class AreaState(Enum):
@@ -155,7 +162,7 @@ class Area:
 
     # ============================ Conversion functions ============================
 
-    def to_coords(self, as_terrain: bool = False) -> OrderedSet[Tile | 'TerrainTile']:
+    def to_coords(self, as_terrain: bool = False) -> OrderedSetTileOrTerrainTile:
         """
         Converts the selection to an OrderedSet of (x, y) coordinates
 
@@ -180,10 +187,7 @@ class Area:
         )
         return self._tiles_to_terrain_tiles(tiles) if as_terrain else tiles
 
-    def to_chunks(
-            self,
-            as_terrain: bool = False
-    ) -> List[OrderedSet[Tile | 'TerrainTile']]:
+    def to_chunks(self, as_terrain: bool = False) -> List[OrderedSetTileOrTerrainTile]:
         """
         Converts the selection to a list of OrderedSets with Tile NamedTuples with (x, y) coordinates.
         The separation between chunks is based on if they're connected to each other.
@@ -208,7 +212,7 @@ class Area:
             chunks.setdefault(chunk_id, []).append(tile)
 
         map_size = self._map_size
-        chunks_ordered: List[OrderedSet[Tile]] = []
+        chunks_ordered: List[OrderedSetTile] = []
         for chunk_id, chunk_tiles in chunks.items():
             tiles = self._tiles_to_terrain_tiles(chunk_tiles) if as_terrain else chunk_tiles
             chunks_ordered.append(

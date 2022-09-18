@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from typing import Iterable, Sequence, TypeVar, List, Generic, Iterator
+from typing import Iterable, Sequence, TypeVar, List, Generic, Iterator, Any
 from uuid import UUID
 
 from typing_extensions import SupportsIndex
@@ -79,7 +79,7 @@ class UuidList(list, Generic[_T]):
         super().insert(__index, __object)
         self._update(__object)
 
-    def pop(self, __index: int = ...) -> _T:
+    def pop(self, __index: int = 0) -> _T:
         popped = super().pop(__index)
         self._callback(is_last_update=True)
         return popped
@@ -92,7 +92,7 @@ class UuidList(list, Generic[_T]):
         super().reverse()
         self._callback(is_last_update=True)
 
-    def sort(self: List, *, key: None = ..., reverse: bool = ...) -> None:
+    def sort(self: List[Any], *, key: None = ..., reverse: bool = ...) -> None:
         super().sort(key=key, reverse=reverse)
 
     def __setitem__(self, i: SupportsIndex, o: _T | Iterable[_T]) -> None:

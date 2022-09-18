@@ -522,7 +522,7 @@ def _get_version_dependant_structure_file(game_version: str, scenario_version: s
     """
     try:
         vdir = _get_version_directory_path()
-        with (vdir / game_version / f'v{scenario_version}' / f'{name}.json').open() as structure_file:
+        with open(vdir / game_version / f'v{scenario_version}' / f'{name}.json') as structure_file:
             return json.load(structure_file)
     except FileNotFoundError:  # Unsupported version
         v = f"{game_version}:{scenario_version}"
@@ -546,7 +546,7 @@ def _get_structure(game_version: str, scenario_version: str) -> Dict[str, Any]:
     """
     try:
         vdir = _get_version_directory_path()
-        with (vdir / game_version / f'v{scenario_version}' / 'structure.json').open() as structure_file:
+        with open(vdir / game_version / f'v{scenario_version}' / 'structure.json') as structure_file:
             structure = json.load(structure_file)
 
             if "FileHeader" not in structure.keys():

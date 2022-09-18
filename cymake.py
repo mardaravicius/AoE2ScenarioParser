@@ -17,7 +17,8 @@ extensions = [
 setup(
     name='Hello world app',
     ext_modules=cythonize(
-        extensions,
+        module_list=extensions,
+        # nthreads=12,
         force=True,
         compiler_directives={
             'language_level': '3'

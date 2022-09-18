@@ -129,22 +129,22 @@ def str_to_bytes(
     raise ValueError(f"Unable to encode string using '{charset}' and '{fallback_charset}'. String:\n\t{q_str(string)}")
 
 
-def bytes_to_int(byte_elements: bytes, endian: str = "little", signed: bool = True) -> int:
+def bytes_to_int(byte_elements: bytes, endian: str = "little", signed_: bool = True) -> int:
     """
     Converts the given bytes to an integer
 
     Args:
         byte_elements: The bytes to convert
         endian: If the conversion should be done with "little" or "big" endian. Defaults to "little"
-        signed: If the int should be a signed int or not. Defaults to False
+        signed_: If the int should be a signed int or not. Defaults to False
 
     Returns:
         The integer converted from the given bytes
     """
-    return int.from_bytes(byte_elements, endian, signed=signed)
+    return int.from_bytes(byte_elements, endian, signed=signed_)
 
 
-def int_to_bytes(integer: int, length: int, endian: str = "little", signed: bool = True) -> bytes:
+def int_to_bytes(integer: int, length: int, endian: str = "little", signed_: bool = True) -> bytes:
     """
     Converts the given integer to bytes
 
@@ -152,12 +152,12 @@ def int_to_bytes(integer: int, length: int, endian: str = "little", signed: bool
         integer: The integer to convert
         length: The number of bytes used to represent the integer
         endian: If the conversion should be done with "little" or "big" endian. Defaults to "little"
-        signed: If the int is a signed int or not. Defaults to True
+        signed_: If the int is a signed int or not. Defaults to True
 
     Returns:
         The bytes converted from the given integer
     """
-    return integer.to_bytes(length, byteorder=endian, signed=signed)
+    return integer.to_bytes(length, byteorder=endian, signed=signed_)
 
 
 def bytes_to_float(byte_elements: bytes) -> float:
@@ -229,7 +229,7 @@ def parse_val_to_bytes(retriever: 'Retriever', val: int | float | str | bytes) -
     var_type, var_len = retriever.datatype.type_and_length
 
     if var_type == "u" or var_type == "s":  # int
-        return int_to_bytes(val, var_len, signed=(var_type == "s"))
+        return int_to_bytes(val, var_len, signed_=(var_type == "s"))
     elif var_type == "str":  # str
         try:
             byte_string = str_to_bytes(val)
@@ -242,7 +242,7 @@ def parse_val_to_bytes(retriever: 'Retriever', val: int | float | str | bytes) -
         if retriever.name not in _no_string_trail:
             byte_string = add_str_trail(byte_string)
 
-        return _combine_int_str(byte_string, var_len, endian="little", signed=True, retriever=retriever)
+        return _combine_int_str(byte_string, var_len, endian="little", signed_=True, retriever=retriever)
     elif var_type == "c":  # str
         if len(val) > var_len:
             raise ValueError(f"Value cannot be longer than {var_len}, retriever: {retriever}")
@@ -275,7 +275,7 @@ def parse_bytes_to_val(retriever: 'Retriever', byte_elements: bytes) -> int | fl
     var_type, var_len = retriever.datatype.type_and_length
 
     if var_type == "u" or var_type == "s":
-        return bytes_to_int(byte_elements, signed=(var_type == "s"))
+        return bytes_to_int(byte_elements, signed_=(var_type == "s"))
     elif var_type == "str":
         return bytes_to_str(byte_elements[var_len:])
     elif var_type == "c":
@@ -295,7 +295,7 @@ def _combine_int_str(
         byte_string: bytes,
         length: int,
         endian: str,
-        signed: bool,
+        signed_: bool,
         retriever: 'Retriever' = None
 ) -> bytes:
     """
@@ -307,7 +307,7 @@ def _combine_int_str(
         byte_string: The byte representation of a string
         length: The length of bytes to store the length in
         endian: This is the format used to encode the length to bytes
-        signed: Determines if the length is a signed or unsigned integer
+        signed_: Determines if the length is a signed or unsigned integer
         retriever: The retriever to encode the bytes for
 
     Returns:
@@ -317,7 +317,7 @@ def _combine_int_str(
         OverflowError: if the number of bytes needed to store the length is higher than the allowed value for scenarios
     """
     try:
-        return int_to_bytes(len(byte_string), length, endian=endian, signed=signed) + byte_string
+        return int_to_bytes(len(byte_string), length, endian=endian, signed_=signed_) + byte_string
     except OverflowError as e:
         if str(e) == "int too big to convert":
             name: str = retriever.name if retriever else ""

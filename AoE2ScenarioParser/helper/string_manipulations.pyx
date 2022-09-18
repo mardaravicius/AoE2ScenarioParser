@@ -46,13 +46,13 @@ def del_str_trail(string: str | bytes) -> str | bytes:
     return string
 
 
-def add_prefix_chars(string: str, char: str, length: int) -> str:
+def add_prefix_chars(string: str, char_: str, length: int) -> str:
     """
     Adds the specified character at the front of a string so that the string is of a given length
 
     Args:
         string: The string to prepend the characters to
-        char: The character to prepend
+        char_: The character to prepend
         length: The desired length of the final string
 
     Returns:
@@ -61,16 +61,16 @@ def add_prefix_chars(string: str, char: str, length: int) -> str:
     if len(string) > length:
         return string
     else:
-        return char * (length - len(string)) + string
+        return char_ * (length - len(string)) + string
 
 
-def add_suffix_chars(string: str, char: str, total_length: int) -> str:
+def add_suffix_chars(string: str, char_: str, total_length: int) -> str:
     """
     Adds the specified character at the end of a string so that the string is of a given length
 
     Args:
         string: The string to append the characters to
-        char: The character to append
+        char_: The character to append
         total_length: The desired length of the final string
 
     Returns:
@@ -79,7 +79,7 @@ def add_suffix_chars(string: str, char: str, total_length: int) -> str:
     if len(string) > total_length:
         return string
     else:
-        return string + char * (total_length - len(string))
+        return string + char_ * (total_length - len(string))
 
 
 def remove_prefix(string: str, prefix: str) -> str:
@@ -178,13 +178,13 @@ def create_textual_hex(string: str, space_distance: int = 2, enter_distance: int
     return insert_char(insert_char(string, " ", space_distance), "\n", enter_distance)
 
 
-def insert_char(string: str, char: str, step: int=64):
+def insert_char(string: str, char_: str, step: int = 64):
     """
     Inserts a character every x amount of letters into a string.
 
     Args:
         string: The string to add the letters into
-        char: The character to add to the string
+        char_: The character to add to the string
         step: The amount of characters in between each character insertion
 
     Returns:
@@ -193,4 +193,4 @@ def insert_char(string: str, char: str, step: int=64):
     :Author:
         gurney alex @ https://stackoverflow.com/a/2657733/7230293
     """
-    return char.join(string[i:i + step] for i in range(0, len(string), step))
+    return char_.join(string[i:i + step] for i in range(0, len(string), step))
