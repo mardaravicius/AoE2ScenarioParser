@@ -4,14 +4,14 @@ import json
 from enum import Enum
 from pathlib import Path
 
-with (Path(__file__).parent / 'sources' / f'unit_projectile_info.json').open() as file:
+with open(Path(__file__).parent / 'sources' / f'unit_projectile_info.json') as file:
     # Open projectiles source-file for raw data. Used in `ProjectileInfo.get_unit_projectile(...)`
     _unit_projectile_info: dict = json.load(file)
 
 
 class ProjectileInfo(Enum):
     """
-    **Description**
+    **Description**®®
 
     This enum class provides information about the projectiles in the game. Information about the following properties
     of a projectile is found in this class:

@@ -1,0 +1,4 @@
+setuptools~=65.3.0
+Cython~=3.0.0a11
+
+-r requirements.txt
