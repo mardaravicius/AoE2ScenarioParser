@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from Cython.Build import cythonize
-from setuptools import setup
+from distutils.core import setup
 from setuptools.extension import Extension
 
 root_directory = Path(__file__).parent
@@ -19,7 +19,7 @@ setup(
     ext_modules=cythonize(
         module_list=extensions,
         # nthreads=12,
-        force=True,
+        force=False,
         compiler_directives={
             'language_level': '3'
         }
