@@ -29,8 +29,8 @@ from AoE2ScenarioParser.scenarios.support.object_factory import ObjectFactory
 from AoE2ScenarioParser.scenarios.support.scenario_actions import ScenarioActions
 from AoE2ScenarioParser.sections.aoe2_file_section import AoE2FileSection
 
-_ScenarioType = TypeVar('_ScenarioType', bound='AoE2Scenario')
-
+ScenarioType = TypeVar('ScenarioType', bound='AoE2Scenario')
+"""A generic type variable that is bound to AoE2Scenario. Used for generic typing AoE2Scenario classes & instances."""
 
 class AoE2Scenario:
     """All scenario objects are derived from this class"""
@@ -81,7 +81,7 @@ class AoE2Scenario:
         self.actions = ScenarioActions(self.uuid)
 
     @classmethod
-    def from_file(cls: Type[_ScenarioType], filename: str, game_version: str) -> _ScenarioType:
+    def from_file(cls: Type[ScenarioType], filename: str, game_version: str) -> ScenarioType:
         """
         Creates and returns an instance of the AoE2Scenario class from the given scenario file
 
@@ -100,7 +100,7 @@ class AoE2Scenario:
         igenerator = IncrementalGenerator.from_file(filename)
         s_print("Reading scenario file finished successfully.", final=True)
 
-        scenario: _ScenarioType = cls(filename)
+        scenario: ScenarioType = cls(filename)
         scenario.read_mode = "from_file"
         scenario.game_version = game_version
         scenario.scenario_version = _get_file_version(igenerator)
@@ -129,7 +129,7 @@ class AoE2Scenario:
 
     def _load_structure(self) -> None:
         """
-        Loads the structure json for the scenario and game version specified into self.structure
+        Loads the structure json for the scenario and game version specified into `self.structure`
 
         Raises:
             ValueError: if the game or scenario versions are not set
@@ -142,7 +142,7 @@ class AoE2Scenario:
         """
         Reads and adds the header file section to the sections dict of the scenario.
 
-        The header is stored decompressed and is the first thing in the scenario file. It is meta data for the scenario
+        The header is stored decompressed and is the first thing in the scenario file. It is metadata for the scenario
         file and thus needs to be read before everything else (also the reason why its stored decompressed).
 
         Args:
@@ -506,7 +506,7 @@ def _get_version_directory_path() -> Path:
 
 def _get_version_dependant_structure_file(game_version: str, scenario_version: str, name: str) -> dict:
     """
-    Returns a structure file dependant on the version of the scenario (AND game version).
+    Returns a structure file dependent on the version of the scenario (AND game version).
     Files are retrieved based on the game and scenario version given.
 
     Args:

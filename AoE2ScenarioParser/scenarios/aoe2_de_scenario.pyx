@@ -6,7 +6,7 @@ from AoE2ScenarioParser.objects.managers.de.unit_manager_de import UnitManagerDE
 from AoE2ScenarioParser.objects.managers.de.xs_manager_de import XsManagerDE
 from AoE2ScenarioParser.objects.managers.message_manager import MessageManager
 from AoE2ScenarioParser.objects.managers.player_manager import PlayerManager
-from AoE2ScenarioParser.scenarios.aoe2_scenario import AoE2Scenario
+from AoE2ScenarioParser.scenarios.aoe2_scenario import AoE2Scenario, ScenarioType
 
 
 class AoE2DEScenario(AoE2Scenario):
@@ -55,4 +55,4 @@ class AoE2DEScenario(AoE2Scenario):
         Returns:
             An instance of the AoE2DEScenario class which is the object representation of the given scenario file
         """
-        return super().from_file(filename, game_version)
+        return super(cls, AoE2DEScenario).from_file(filename, game_version)
