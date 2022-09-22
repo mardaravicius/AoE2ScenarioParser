@@ -1,8 +1,11 @@
+from distutils.core import setup
 from pathlib import Path
 
 from Cython.Build import cythonize
-from distutils.core import setup
+from Cython.Compiler import Options
 from setuptools.extension import Extension
+
+Options.annotate = True
 
 root_directory = Path(__file__).parent
 source_directory = root_directory / 'AoE2ScenarioParser'
@@ -22,6 +25,7 @@ setup(
         force=False,
         compiler_directives={
             'language_level': '3'
-        }
+        },
+        annotate=True
     ),
 )
