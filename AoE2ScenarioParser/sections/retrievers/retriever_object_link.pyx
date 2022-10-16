@@ -3,6 +3,7 @@ from uuid import UUID
 
 from AoE2ScenarioParser.helper.exceptions import UnsupportedAttributeError
 from AoE2ScenarioParser.objects.aoe2_object import AoE2Object
+from AoE2ScenarioParser.objects.support.uuid_list import UuidList
 from AoE2ScenarioParser.scenarios.scenario_store import getters
 from AoE2ScenarioParser.sections.aoe2_file_section import AoE2FileSection
 from AoE2ScenarioParser.sections.aoe2_struct_model import AoE2StructModel
@@ -172,7 +173,7 @@ class RetrieverObjectLink(RetrieverObjectLinkParent):
         self.push_to_link(uuid, host_obj.instance_number_history, host_obj)
 
     @staticmethod
-    def commit_object_list(object_list: List['AoE2Object'], instance_number_history: List[int]):
+    def commit_object_list(object_list: List['AoE2Object'] | UuidList['AoE2Object'], instance_number_history: List[int]):
         for index, obj in enumerate(object_list):
             obj._instance_number_history = instance_number_history + [index]
             obj.commit()

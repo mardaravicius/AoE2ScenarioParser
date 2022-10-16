@@ -29,10 +29,10 @@ class PlayerDataThree(AoE2Object):
             self,
             initial_camera_x: int,
             initial_camera_y: int,
-            aok_allied_victory: int,
+            aok_allied_victory: int | bool,
             diplomacy_for_interaction: List[int],
             diplomacy_for_ai_system: List[int],
-            color: int,
+            color: int | ColorId,
             **kwargs):
         super().__init__(**kwargs)
 

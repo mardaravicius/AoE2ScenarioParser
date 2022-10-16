@@ -129,7 +129,7 @@ class PlayerManager(AoE2Object):
             setattr(self.players[player_id], '_active', player_id <= value)
 
     @property
-    def players(self) -> List[Player]:
+    def players(self) -> UuidList[Player]:
         """Returns all player objects"""
         return self._players
 
@@ -243,7 +243,7 @@ class PlayerManager(AoE2Object):
         ])
 
     @property
-    def _player_data_3(self) -> List[PlayerDataThree]:
+    def _player_data_3(self) -> UuidList[PlayerDataThree]:
         """Returns the resource objects for all players"""
         original_map: Dict[int, str] = {0: 'ally', 1: 'neutral', 3: 'enemy'}
         mappings: Dict[str, Dict[str, int]] = {

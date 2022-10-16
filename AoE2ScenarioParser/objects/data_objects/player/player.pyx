@@ -4,7 +4,7 @@ from typing import Optional, List, overload, Type
 
 from AoE2ScenarioParser.datasets.dataset_enum import dataset_or_value
 from AoE2ScenarioParser.datasets.object_support import StartingAge, Civilization
-from AoE2ScenarioParser.datasets.players import PlayerId
+from AoE2ScenarioParser.datasets.players import PlayerId, ColorId
 from AoE2ScenarioParser.datasets.trigger_lists import DiplomacyState
 from AoE2ScenarioParser.helper.list_functions import listify
 from AoE2ScenarioParser.objects.aoe2_object import AoE2Object
@@ -43,18 +43,18 @@ class Player(AoE2Object):
 
     def __init__(
             self,
-            player_id: Type[int],
+            player_id: int | PlayerId,
             starting_age: int,
             lock_civ: int,
             food: int,
             wood: int,
             gold: int,
             stone: int,
-            color: Type[int],
+            color: int | ColorId,
             active: bool,
             human: bool,
-            civilization: Type[int],
-            architecture_set: Type[int],
+            civilization: int | Civilization,
+            architecture_set: int | Civilization,
 
             # Optionals due to GAIA not having such value
             population_cap: Optional[int] = None,
@@ -72,7 +72,7 @@ class Player(AoE2Object):
     ):
         super().__init__(**kwargs)
 
-        self._player_id: int = player_id
+        self._player_id: int | PlayerId = player_id
         self._active: bool = active
         self.starting_age: int = dataset_or_value(StartingAge, starting_age)
         self.lock_civ: bool = bool(lock_civ)
@@ -80,7 +80,7 @@ class Player(AoE2Object):
         self.wood: int = wood
         self.gold: int = gold
         self.stone: int = stone
-        self.color: int = color
+        self.color: int | ColorId = color
         self.human: bool = human
         self.civilization: int | Civilization = dataset_or_value(Civilization, civilization)
         self.architecture_set: int | Civilization = dataset_or_value(Civilization, architecture_set)
