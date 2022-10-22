@@ -1,9 +1,6 @@
-from __future__ import annotations
+from typing import Any, List, Union
 
-from typing import Any, List
-
-
-def add_str_trail(string: str | bytes) -> str | bytes:
+def add_str_trail(string: Union[str, bytes]) -> Union[str, bytes]:
     """
     Appends the null character b"\x00" to the end of the bytes if it is not already present
 
@@ -17,8 +14,7 @@ def add_str_trail(string: str | bytes) -> str | bytes:
         string += b"\x00"
     return string
 
-
-def has_str_trail(string: str | bytes) -> bool:
+def has_str_trail(string: Union[str, bytes]) -> bool:
     """
     Checks if the given bytes ends with the null character
 
@@ -30,10 +26,9 @@ def has_str_trail(string: str | bytes) -> bool:
     """
     return string.endswith(b"\x00")
 
-
-def del_str_trail(string: str | bytes) -> str | bytes:
+def del_str_trail(string: Union[str, bytes]) -> Union[str, bytes]:
     """
-    Removes the the null character from the end of a string/bytes
+    Removes the null character from the end of a string/bytes
 
     Args:
         string: The string/bytes to remove the null character from
@@ -44,7 +39,6 @@ def del_str_trail(string: str | bytes) -> str | bytes:
     if has_str_trail(string):
         string = string[:-1]
     return string
-
 
 def add_prefix_chars(string: str, char_: str, length: int) -> str:
     """
@@ -63,7 +57,6 @@ def add_prefix_chars(string: str, char_: str, length: int) -> str:
     else:
         return char_ * (length - len(string)) + string
 
-
 def add_suffix_chars(string: str, char_: str, total_length: int) -> str:
     """
     Adds the specified character at the end of a string so that the string is of a given length
@@ -81,7 +74,6 @@ def add_suffix_chars(string: str, char_: str, total_length: int) -> str:
     else:
         return string + char_ * (total_length - len(string))
 
-
 def remove_prefix(string: str, prefix: str) -> str:
     """
     Cheap knockoff function of: https://docs.python.org/3/library/stdtypes.html?highlight=removesuffix#str.removeprefix
@@ -94,7 +86,6 @@ def remove_prefix(string: str, prefix: str) -> str:
         The given string or the string without the prefix if it was present
     """
     return string[len(prefix):] if string.index(prefix) == 0 else string
-
 
 def q_str(value: Any) -> str:
     """
@@ -113,8 +104,7 @@ def q_str(value: Any) -> str:
         return f"b'{value.hex()}'"
     return str(value)
 
-
-def trunc_string(string: str | bytes, length=30, add_ellipsis=True) -> str | bytes:
+def trunc_string(string: Union[str, bytes], length=30, add_ellipsis=True) -> Union[str, bytes]:
     """
     Truncates string to a certain length and possibly adds ellipsis to said string.
 
@@ -130,7 +120,6 @@ def trunc_string(string: str | bytes, length=30, add_ellipsis=True) -> str | byt
     alt = '' if isinstance(string, str) else b''
     return (string[:length] + (ellipsis_ if add_ellipsis else alt)) if len(string) > length else string
 
-
 def add_tabs(string: str, tabs: int) -> str:
     """
     Adds tabs to a string. Tabs are added in front of each line of the string
@@ -145,7 +134,6 @@ def add_tabs(string: str, tabs: int) -> str:
     splitted_string = string.splitlines(keepends=True)
     return ("\t" * tabs) + ("\t" * tabs).join(splitted_string)
 
-
 def create_inline_line(entries: List[Any]):
     """
     Creates inline string of elements from the given list, converts the elements to strings and appends them.
@@ -158,7 +146,6 @@ def create_inline_line(entries: List[Any]):
         The created inline string
     """
     return "\t" + ", ".join(map(str, entries)) + "\r\n"
-
 
 def create_textual_hex(string: str, space_distance: int = 2, enter_distance: int = 48):
     """
@@ -176,7 +163,6 @@ def create_textual_hex(string: str, space_distance: int = 2, enter_distance: int
         The converted string with spaces and enters
     """
     return insert_char(insert_char(string, " ", space_distance), "\n", enter_distance)
-
 
 def insert_char(string: str, char_: str, step: int = 64):
     """

@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import List
 
 from AoE2ScenarioParser.datasets.support.info_dataset_base import InfoDatasetBase
@@ -15,7 +13,7 @@ class OtherInfo(InfoDatasetBase):
      - Icon ID
      - Dead Unit ID
      - HotKey ID
-     - If the unit is a gaia only unit (eg. deer, boar, etc.)
+     - If the unit is a gaia only unit (e.g. deer, boar, etc.)
 
     **Methods**
 
@@ -49,7 +47,7 @@ class OtherInfo(InfoDatasetBase):
     """
 
     @staticmethod
-    def trees() -> List[OtherInfo]:
+    def trees() -> List['OtherInfo']:
         """
         Returns:
             A list of all tree objects

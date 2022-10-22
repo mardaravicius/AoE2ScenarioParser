@@ -1,8 +1,7 @@
-from __future__ import annotations
 
 import copy
 from enum import IntEnum
-from typing import List, Dict, Tuple, Type
+from typing import List, Dict, Tuple, Type, Union
 
 from AoE2ScenarioParser.datasets.effects import EffectId
 from AoE2ScenarioParser.datasets.players import PlayerId
@@ -32,13 +31,13 @@ class TriggerManager(AoE2Object):
     ]
 
     def __init__(self,
-            triggers: Type[List[Trigger]],
+            triggers: List[Trigger],
             trigger_display_order: List[int],
             **kwargs
     ):
         super().__init__(**kwargs)
 
-        self.triggers: Type[List[Trigger]] = triggers
+        self.triggers: List[Trigger] = triggers
         self.trigger_display_order: List[int] = trigger_display_order
         self._trigger_hash = hash_list(triggers)
 
@@ -47,7 +46,7 @@ class TriggerManager(AoE2Object):
         return self._triggers
 
     @triggers.setter
-    def triggers(self, value: Type[List[Trigger]]) -> None:
+    def triggers(self, value: List[Trigger]) -> None:
         value = UuidList(self._uuid, value, on_update_execute_entry=self._update_triggers_uuid)
 
         self._trigger_hash = hash_list(value)
@@ -75,11 +74,11 @@ class TriggerManager(AoE2Object):
     def copy_trigger_per_player(
             self,
             from_player: IntEnum,
-            trigger_select: int | TriggerSelect,
+            trigger_select: Union[int, TriggerSelect],
             change_from_player_only: bool = False,
             include_player_source: bool = True,
             include_player_target: bool = False,
-            trigger_ce_lock: TriggerCELock | None = None,
+            trigger_ce_lock: Union[TriggerCELock, None] = None,
             include_gaia: bool = False,
             create_copy_for_players: List[IntEnum] = None
     ) -> Dict[PlayerId, Trigger]:
@@ -170,7 +169,7 @@ class TriggerManager(AoE2Object):
 
     def copy_trigger(
             self,
-            trigger_select: int | TriggerSelect,
+            trigger_select: Union[int, TriggerSelect],
             append_after_source: bool = True,
             add_suffix: bool = True
     ) -> Trigger:
@@ -202,14 +201,14 @@ class TriggerManager(AoE2Object):
     def copy_trigger_tree_per_player(
             self,
             from_player: IntEnum,
-            trigger_select: int | TriggerSelect,
+            trigger_select: Union[int, TriggerSelect],
             change_from_player_only: bool = False,
             include_player_source: bool = True,
             include_player_target: bool = False,
-            trigger_ce_lock: TriggerCELock | None = None,
+            trigger_ce_lock: Union[TriggerCELock, None] = None,
             include_gaia: bool = False,
             create_copy_for_players: List[IntEnum] | None = None,
-            group_triggers_by: GroupBy | None = None
+            group_triggers_by: Union[GroupBy, None] = None
     ) -> Dict[IntEnum, List[Trigger]]:
         """
         Copies an entire trigger tree for all or a selection of players. Every copy will change desired player
@@ -383,7 +382,7 @@ class TriggerManager(AoE2Object):
                 if effect.trigger_id in index_changes:
                     effect.trigger_id = index_changes[effect.trigger_id]
 
-    def copy_trigger_tree(self, trigger_select: int | TriggerSelect) -> List[Trigger]:
+    def copy_trigger_tree(self, trigger_select: Union[int, TriggerSelect]) -> List[Trigger]:
         """
         Copies an entire trigger tree. Trigger trees are triggers linked together using EffectId.(DE)ACTIVATE_TRIGGER.
 
@@ -417,7 +416,7 @@ class TriggerManager(AoE2Object):
 
     def replace_player(
             self,
-            trigger_select: int | TriggerSelect,
+            trigger_select: Union[int, TriggerSelect],
             to_player: PlayerId,
             only_change_from: PlayerId = None,
             include_player_source: bool = True,
@@ -472,17 +471,17 @@ class TriggerManager(AoE2Object):
     def add_trigger(
             self,
             name: str,
-            description: str | None = None,
-            description_stid: int | None = None,
-            display_as_objective: bool | None = None,
-            short_description: str | None = None,
-            short_description_stid: int | None = None,
-            display_on_screen: bool | None = None,
-            description_order: int | None = None,
-            enabled: bool | None = None,
-            looping: bool | None = None,
-            header: bool | None = None,
-            mute_objectives: bool | None = None,
+            description: Union[str, None] = None,
+            description_stid: Union[int, None] = None,
+            display_as_objective: Union[bool, None] = None,
+            short_description: Union[str, None] = None,
+            short_description_stid: Union[int, None] = None,
+            display_on_screen: Union[bool, None] = None,
+            description_order: Union[int, None] = None,
+            enabled: Union[bool, None] = None,
+            looping: Union[bool, None] = None,
+            header: Union[bool, None] = None,
+            mute_objectives: Union[bool, None] = None,
             conditions: List[Condition] | None = None,
             effects: List[Effect] | None = None
     ) -> Trigger:
@@ -557,11 +556,11 @@ class TriggerManager(AoE2Object):
             self.move_triggers([t.trigger_id for t in triggers], index)
         return triggers
 
-    def get_trigger(self, trigger_select: int | TriggerSelect) -> Trigger:
+    def get_trigger(self, trigger_select: Union[int, TriggerSelect]) -> Trigger:
         trigger_index, display_index, trigger = self._validate_and_retrieve_trigger_info(trigger_select)
         return trigger
 
-    def remove_trigger(self, trigger_select: int | TriggerSelect) -> None:
+    def remove_trigger(self, trigger_select: Union[int, TriggerSelect]) -> None:
         trigger_index, display_index, trigger = self._validate_and_retrieve_trigger_info(trigger_select)
 
         del self.triggers[trigger_index]
@@ -653,7 +652,7 @@ class TriggerManager(AoE2Object):
 
         return return_string
 
-    def get_trigger_as_string(self, trigger_select: int | TriggerSelect) -> str:
+    def get_trigger_as_string(self, trigger_select: Union[int, TriggerSelect]) -> str:
         trigger_index, display_index, trigger = self._validate_and_retrieve_trigger_info(trigger_select)
 
         return_string = "\t'" + trigger.name + "'"

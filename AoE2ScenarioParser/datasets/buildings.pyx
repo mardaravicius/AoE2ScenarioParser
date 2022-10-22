@@ -11,7 +11,7 @@ class BuildingInfo(InfoDatasetBase):
      - Icon ID
      - Dead Unit ID
      - HotKey ID
-     - If the building is a gaia only unit (eg. ruins)
+     - If the building is a gaia only unit (e.g. ruins)
 
     **Inherited Methods from class InfoDatasetBase**
 

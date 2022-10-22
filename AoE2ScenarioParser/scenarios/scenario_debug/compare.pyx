@@ -1,6 +1,5 @@
-from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 from typing import Tuple, Any, List, TextIO
 
 from AoE2ScenarioParser import settings
@@ -58,8 +57,8 @@ def write_difference_to_file(
 
 def compare_retrievers(
         output_file: TextIO,
-        obj1: Retriever | AoE2FileSection,
-        obj2: Retriever | AoE2FileSection,
+        obj1: Union[Retriever, AoE2FileSection],
+        obj2: Union[Retriever, AoE2FileSection],
         path: List[str]
 ) -> None:
     """

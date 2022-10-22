@@ -1,6 +1,5 @@
-from __future__ import annotations
 
-from typing import List, Tuple, Any
+from typing import List, Tuple, Any, Union
 
 from AoE2ScenarioParser.datasets import effects
 from AoE2ScenarioParser.datasets.effects import EffectId
@@ -18,7 +17,7 @@ from AoE2ScenarioParser.sections.retrievers.retriever_object_link_group import R
 from AoE2ScenarioParser.sections.retrievers.support import Support
 
 
-def _add_trail_if_string_attr_is_used_in_effect(obj: Effect, attr_name, val: bytes | str):
+def _add_trail_if_string_attr_is_used_in_effect(obj: 'Effect', attr_name, val: Union[bytes, str]):
     if attr_name in effects.attributes[obj.effect_type]:
         return val + (b"\x00" if type(val) is bytes else "\x00")
     return val

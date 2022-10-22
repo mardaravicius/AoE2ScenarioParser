@@ -1,7 +1,6 @@
-from __future__ import annotations
 
 import pickle
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Union
 
 from AoE2ScenarioParser import settings
 from AoE2ScenarioParser.helper import bytes_parser, string_manipulations
@@ -43,7 +42,7 @@ class Retriever:
             name: str,
             default_value: Any = None,
             datatype: DataType = DataType(),
-            is_list: bool | None = None,
+            is_list: Union[bool, None] = None,
             log_value: bool = False,
     ):
         """

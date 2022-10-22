@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 
 from AoE2ScenarioParser.datasets.players import ColorId
 from AoE2ScenarioParser.objects.aoe2_object import AoE2Object
@@ -29,10 +29,10 @@ class PlayerDataThree(AoE2Object):
             self,
             initial_camera_x: int,
             initial_camera_y: int,
-            aok_allied_victory: int | bool,
+            aok_allied_victory: Union[int, bool],
             diplomacy_for_interaction: List[int],
             diplomacy_for_ai_system: List[int],
-            color: int | ColorId,
+            color: Union[int, ColorId],
             **kwargs):
         super().__init__(**kwargs)
 

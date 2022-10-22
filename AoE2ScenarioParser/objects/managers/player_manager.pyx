@@ -1,6 +1,5 @@
-from __future__ import annotations
 
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Union
 
 from AoE2ScenarioParser.datasets.players import PlayerId
 from AoE2ScenarioParser.datasets.trigger_lists import DiplomacyState
@@ -159,7 +158,7 @@ class PlayerManager(AoE2Object):
             self.players[player].gold = 100
             self.players[player].stone = 200
 
-    def set_diplomacy_teams(self, *args: List[PlayerId | int], diplomacy: DiplomacyState = DiplomacyState.ALLY) \
+    def set_diplomacy_teams(self, *args: List[Union[PlayerId, int]], diplomacy: DiplomacyState = DiplomacyState.ALLY) \
             -> None:
         """
         Sets all players in list allied with all others in the same list. Accepts
@@ -318,8 +317,8 @@ class PlayerManager(AoE2Object):
     def _player_attributes_to_list(
             self,
             attribute: str,
-            gaia_first: bool | None = True,
-            default: str | int = 0,
+            gaia_first: Union[bool, None] = True,
+            default: Union[str, int] = 0,
             fill_empty: int = 0
     ) -> List[Any]:
         """
@@ -348,7 +347,7 @@ class PlayerManager(AoE2Object):
         return values + default_list
 
 
-def _player_list(gaia_first: None | bool = True) -> List[PlayerId]:
+def _player_list(gaia_first: Union[None, bool] = True) -> List[PlayerId]:
     """
     Construct a list of players where GAIA can be first, last or not in the list at all
 
@@ -368,7 +367,7 @@ def _spread_player_attributes(
         player_attributes: Dict[int, Dict[Any]],
         key: str,
         lst: List[Any],
-        gaia_first: None | bool = True
+        gaia_first: Union[None, bool] = True
 ) -> None:
     """
     Spreads list values to player attribute dictionaries

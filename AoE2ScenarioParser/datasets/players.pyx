@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 from enum import IntEnum
-from typing import List
+from typing import List, Union
 
 
 class PlayerId(IntEnum):
@@ -54,7 +52,7 @@ class PlayerColorId(IntEnum):
 class ColorId(IntEnum):
     """
     This enum represents the actual colors in the dropdown menu for players.
-    Do not confuse with the PlayerColorId which is used to reference a player number by it's color.
+    Do not confuse with the PlayerColorId which is used to reference a player number by its color.
     """
     BLUE = 0
     RED = 1
@@ -74,7 +72,7 @@ class ColorId(IntEnum):
     INVALID_15 = 15
 
     @staticmethod
-    def from_player_id(player_id: PlayerId | int):
+    def from_player_id(player_id: Union[PlayerId, int]):
         if not 0 <= player_id <= 8:
             raise ValueError(f"Invalid player ID. Should be between 0 and 8 (both incl), but got: {player_id}")
         if player_id == 0:

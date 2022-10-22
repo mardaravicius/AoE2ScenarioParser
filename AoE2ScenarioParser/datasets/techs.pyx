@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 from enum import Enum
-from typing import List
+from typing import List, Union
 
 from AoE2ScenarioParser.datasets.buildings import BuildingInfo
 from AoE2ScenarioParser.datasets.trigger_lists import Age
@@ -58,7 +56,7 @@ class TechInfo(Enum):
         """
         if tech_id < 0:
             raise ValueError(f"{tech_id} is not a valid tech id value")
-        for x in cls._member_map_.values():
+        for x in cls._member_map_.values():  # type: TechInfo
             if x.value[0] == tech_id:
                 return x
 
@@ -286,7 +284,7 @@ class TechInfo(Enum):
         return techs_to_return
 
     @staticmethod
-    def town_center_techs(ages: int | List[int] = None):
+    def town_center_techs(ages: Union[int, List][int] = None):
         """
         Args:
             ages: a list of age IDs (IDs are located in the Age IntEnum dataset). If specified, only techs from these
@@ -322,7 +320,7 @@ class TechInfo(Enum):
         return techs_to_return
 
     @staticmethod
-    def blacksmith_techs(ages: int | List[int] = None) -> List[TechInfo]:
+    def blacksmith_techs(ages: Union[int, List][int] = None) -> List[TechInfo]:
         """
         Args:
             ages: a list of age IDs (IDs are located in the Age IntEnum dataset). If specified, only techs from these
@@ -365,7 +363,7 @@ class TechInfo(Enum):
         return techs_to_return
 
     @staticmethod
-    def monastery_techs(ages: int | List[int] = None) -> List[TechInfo]:
+    def monastery_techs(ages: Union[int, List][int] = None) -> List[TechInfo]:
         """
         Args:
             ages: The age ID (IDs are located in the Age IntEnum dataset). If specified, only techs from these
@@ -402,7 +400,7 @@ class TechInfo(Enum):
         return techs_to_return
 
     @staticmethod
-    def university_techs(ages: int | List[int] = None) -> List[TechInfo]:
+    def university_techs(ages: Union[int, List][int] = None) -> List[TechInfo]:
         """
         Args:
             ages: The age ID (IDs are located in the Age IntEnum dataset). If specified, only techs from these
@@ -442,7 +440,7 @@ class TechInfo(Enum):
         return techs_to_return
 
     @staticmethod
-    def eco_techs(ages: int | List[int] = None, buildings: int | List[int] = None) -> List[TechInfo]:
+    def eco_techs(ages: Union[int, List][int] = None, buildings: Union[int, List][int] = None) -> List[TechInfo]:
         """
         Args:
             ages: The age ID (IDs are located in the Age IntEnum dataset). If specified, only techs from these

@@ -1,6 +1,5 @@
-from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, List, Callable
+from typing import Dict, TYPE_CHECKING, List, Callable, Union
 from uuid import UUID
 
 from AoE2ScenarioParser.datasets.conditions import attribute_presentation as condition_attribute_presentation
@@ -36,18 +35,20 @@ _store_error_displays: Dict[str, Dict[str, Callable[..., str]]] = {
 
 
 def _format_trigger_id_representation(id_: int, uuid: UUID) -> str:
-    if (name := getters.get_trigger(uuid, id_).name) is not None:
+    name = getters.get_trigger(uuid, id_).name
+    if name is not None:
         return f"\"{trunc_string(name)}\""
     return _store_error_displays['triggers']['invalid_reference']()
 
 
 def _format_variable_id_representation(id_: int, uuid: UUID) -> str:
-    if (name := getters.get_variable_name(uuid, id_)) is not None:
+    name = getters.get_variable_name(uuid, id_)
+    if name is not None:
         return f"\"{trunc_string(name)}\""
     return _store_error_displays['variables']['invalid_reference']()
 
 
-def _format_unit_reference_representation(ref_id: int | List[int], uuid: UUID) -> str:
+def _format_unit_reference_representation(ref_id: Union[int, List][int], uuid: UUID) -> str:
     def format_unit(u: 'Unit') -> str:
         enum_entry = u.unit_const
         if not issubclass(u.unit_const.__class__, InfoDatasetBase):

@@ -1,4 +1,4 @@
-from __future__ import annotations
+from typing import Union
 
 from AoE2ScenarioParser.sections.dependencies.dependency_action import DependencyAction
 from AoE2ScenarioParser.sections.dependencies.dependency_eval import DependencyEval
@@ -12,8 +12,8 @@ class RetrieverDependency:
     def __init__(
             self,
             dependency_action: DependencyAction,
-            dependency_target: DependencyTarget | None = None,
-            dependency_eval: DependencyEval | None = None
+            dependency_target: Union[DependencyTarget, None] = None,
+            dependency_eval: Union[DependencyEval, None] = None
     ):
         """
         Args:

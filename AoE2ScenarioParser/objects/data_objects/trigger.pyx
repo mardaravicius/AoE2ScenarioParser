@@ -1,4 +1,4 @@
-from typing import List, Any, Type
+from typing import List, Any, Type, Union
 
 import AoE2ScenarioParser.datasets.conditions as condition_dataset
 import AoE2ScenarioParser.datasets.effects as effect_dataset
@@ -54,8 +54,8 @@ class Trigger(AoE2Object, TriggerComponent):
                  short_description_stid: int = -1,
                  display_on_screen: int = 0,
                  description_order: int = 0,
-                 enabled: int | bool = 1,
-                 looping: int | bool = 0,
+                 enabled: Union[int, bool] = 1,
+                 looping: Union[int, bool] = 0,
                  header: int = 0,
                  mute_objectives: int = 0,
                  conditions: List[Condition] = None,

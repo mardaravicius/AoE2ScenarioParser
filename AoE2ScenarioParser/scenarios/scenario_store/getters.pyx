@@ -1,6 +1,5 @@
-from __future__ import annotations
 
-from typing import Optional, List, Tuple, Dict, TYPE_CHECKING
+from typing import Optional, List, Tuple, Dict, TYPE_CHECKING, Union
 from uuid import UUID
 
 from AoE2ScenarioParser.scenarios.scenario_store import store
@@ -170,7 +169,7 @@ def get_trigger(uuid: UUID, trigger_index: int) -> Optional['Trigger']:
     return None
 
 
-def get_triggers_by_prefix(uuid: UUID, prefix: str | Tuple) -> Optional[List['Trigger']]:
+def get_triggers_by_prefix(uuid: UUID, prefix: Union[str, Tuple]) -> Optional[List['Trigger']]:
     """
     Get the trigger version of the scenario.
 
@@ -203,7 +202,8 @@ def get_variable_name(uuid: UUID, variable_index: int) -> Optional[str]:
     """
     scenario: Optional[AoE2DEScenario] = store.get_scenario(uuid)
     if scenario:
-        if gv := get_game_version(uuid) == "DE":
+        gv = get_game_version(uuid) == "DE"
+        if gv:
             variable = scenario.trigger_manager.get_variable(variable_index)
             if variable:
                 return variable.name

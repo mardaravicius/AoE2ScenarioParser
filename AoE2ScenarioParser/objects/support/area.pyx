@@ -1,9 +1,8 @@
-from __future__ import annotations
 
 import copy
 import math
 from enum import Enum
-from typing import Dict, TYPE_CHECKING, List, Tuple, Iterable, TypeVar, Type
+from typing import Dict, TYPE_CHECKING, List, Tuple, Iterable, TypeVar, Type, Union
 from uuid import UUID
 
 from AoE2ScenarioParser.helper.helper import xy_to_i, validate_coords
@@ -381,7 +380,7 @@ class Area:
         self.axis = axis
         return self
 
-    def attr(self, key: str | AreaAttr, value: int) -> Area:
+    def attr(self, key: Union[str, AreaAttr], value: int) -> Area:
         """Sets the attribute to the given value. AreaAttr or str can be used as key"""
         if isinstance(key, AreaAttr):
             key = key.value
@@ -485,13 +484,17 @@ class Area:
         """
         center_x, center_y = self.get_center()
         diff_x, diff_y = math.floor(x - center_x), math.floor(y - center_y)
+
+        distance_x = self._map_size - self.x2
+        distance_y = self._map_size - self.y2
+
         if diff_x < 0 and abs(diff_x) > self.x1:
             diff_x = -self.x1
-        elif diff_x > 0 and diff_x > (distance_x := self._map_size - self.x2):
+        elif diff_x > 0 and diff_x > distance_x:
             diff_x = distance_x
         if diff_y < 0 and abs(diff_y) > self.y1:
             diff_y = -self.y1
-        elif diff_y > 0 and diff_y > (distance_y := self._map_size - self.y2):
+        elif diff_y > 0 and diff_y > distance_y:
             diff_y = distance_y
         self.x1 += diff_x
         self.y1 += diff_y
@@ -650,13 +653,15 @@ class Area:
         """
         half: float = (new_len - cur_len) / 2
         half1, half2 = -half, half
+
+        distance = self._map_size - second_coord
         if half > 0:
             if half > first_coord:
                 half1 = -first_coord
                 half2 += half - first_coord
-            if half > (dist := self._map_size - second_coord):
-                half2 = dist
-                half1 += half - dist
+            if half > distance:
+                half2 = distance
+                half1 += half - distance
             return math.floor(half1), math.floor(half2)
         return math.ceil(half1), math.ceil(half2)
 
@@ -691,7 +696,7 @@ class Area:
             return (x - self.x1) % (self.gap_size_x + self.line_width_x) < self.line_width_x
         raise ValueError("Invalid axis value. Should be either x or y")
 
-    def _minmax_val(self, val: int | float) -> int | float:
+    def _minmax_val(self, val: Union[int, float]) -> Union[int, float]:
         """Keeps a given value within the bounds of ``0 <= val <= map_size``."""
         return max(0, min(val, self._map_size))
 

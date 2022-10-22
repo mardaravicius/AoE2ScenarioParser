@@ -1,11 +1,9 @@
-from __future__ import annotations
-
 from enum import Enum, IntEnum, IntFlag, EnumMeta
-from typing import Type
+from typing import Type, Union
 
 
 class _DataSetMeta(EnumMeta):
-    """Meta class for the dataset enums"""
+    """Metaclass for the dataset enums"""
     def __contains__(self, other):
         try:
             self(other)
@@ -51,12 +49,12 @@ class _DataSetIntFlags(_DataSet, IntFlag):
         return super().name
 
 
-def dataset_or_value(enum: Type[_DataSet], value: int | str) -> _DataSet | int | str:
+def dataset_or_value(enum: Type[_DataSet], value: Union[int, str]) -> Union[_DataSet, int, str]:
     """
     Return the value in the enum used to create the enum, or if it failed, returns just the value
 
     Args:
-        enum: The enum to create with the given value
+        enum: The enum to create with the given value.
         value: The value to use in the enum
 
     Returns:

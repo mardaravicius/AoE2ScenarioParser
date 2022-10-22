@@ -1,10 +1,9 @@
-from __future__ import annotations
 
 import json
 import uuid
 import zlib
 from pathlib import Path
-from typing import Dict, Any, Type, TypeVar
+from typing import Dict, Any, Type, TypeVar, Union
 
 import AoE2ScenarioParser.datasets.conditions as conditions
 import AoE2ScenarioParser.datasets.effects as effects
@@ -67,7 +66,7 @@ class AoE2Scenario:
         self.game_version: str = "???"
         self.structure = {}
         self.sections: Dict[str, AoE2FileSection] = {}
-        self._object_manager: AoE2ObjectManager | None = None
+        self._object_manager: Union[AoE2ObjectManager, None] = None
 
         # Used in debug functions
         self._file = None

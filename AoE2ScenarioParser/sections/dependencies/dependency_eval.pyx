@@ -1,6 +1,5 @@
-from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Union
 
 
 class DependencyEval:
@@ -20,7 +19,7 @@ class DependencyEval:
         self.eval_locals: Dict[str, str] = eval_locals
 
     @classmethod
-    def instance_or_none(cls, eval_code: str | None) -> DependencyEval | None:
+    def instance_or_none(cls, eval_code: Union[str, None]) -> Union[DependencyEval, None]:
         """
         Returns a DependencyEval instance created from the given code
 

@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 import json
 import math
@@ -21,6 +20,9 @@ class DiplomacyState(_DataSetIntEnums):
     ALLY = 0
     NEUTRAL = 1
     ENEMY = 3
+
+
+print(DiplomacyState(DiplomacyState.ALLY))
 
 
 class Operation(_DataSetIntEnums):
@@ -2548,10 +2550,10 @@ class HeroStatusFlag(_DataSetIntFlags):
 
     >>> HeroStatusFlag.HERO_REGENERATION
     <HeroStatusFlag.HERO_REGENERATION: 4>
-    >>> HeroStatusFlag.HERO_REGENERATION | HeroStatusFlag.HERO_GLOW
-    <HeroStatusFlag.HERO_GLOW|HERO_REGENERATION: 68>
+    >>> HeroStatusFlag.Union[HERO_REGENERATION | HeroStatusFlag].HERO_GLOW
+    <HeroStatusFlag.Union[HERO_GLOW|HERO_REGENERATION]: 68>
     >>> HeroStatusFlag.combine(hero_regeneration=True, hero_glow=True)
-    <HeroStatusFlag.HERO_GLOW|HERO_REGENERATION: 68>
+    <HeroStatusFlag.Union[HERO_GLOW|HERO_REGENERATION]: 68>
     """
 
     @staticmethod
@@ -2918,8 +2920,8 @@ class SecondaryGameMode(_DataSetIntFlags):
 
     >>> SecondaryGameMode.EMPIRE_WARS
     <SecondaryGameMode.EMPIRE_WARS: 1>
-    >>> SecondaryGameMode.SUDDEN_DEATH | SecondaryGameMode.REGICIDE
-    <HeroStatusFlag.SUDDEN_DEATH|REGICIDE: 6>
+    >>> SecondaryGameMode.Union[SUDDEN_DEATH | SecondaryGameMode].REGICIDE
+    <HeroStatusFlag.Union[SUDDEN_DEATH|REGICIDE]: 6>
     """
 
     # todo: we can probably add this to the base dataset int flags class, I have an idea on how to generic-ify this

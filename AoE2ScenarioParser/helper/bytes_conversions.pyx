@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 import struct
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from AoE2ScenarioParser import settings
 from AoE2ScenarioParser.helper.printers import warn
@@ -74,7 +72,7 @@ def bytes_to_str(
         byte_elements: bytes,
         charset: str = settings.MAIN_CHARSET,
         fallback_charset: str = settings.FALLBACK_CHARSET
-) -> str | bytes:
+) -> Union[str, bytes]:
     """
     Converts bytes to string based on given charset.
 
@@ -212,7 +210,7 @@ def double_to_bytes(d: float) -> bytes:
     return struct.pack('d', d)
 
 
-def parse_val_to_bytes(retriever: 'Retriever', val: int | float | str | bytes) -> bytes:
+def parse_val_to_bytes(retriever: 'Retriever', val: Union[int, float, str, bytes]) -> bytes:
     """
     Encodes the given value to bytes according to the datatype of the retriever
 
@@ -258,7 +256,7 @@ def parse_val_to_bytes(retriever: 'Retriever', val: int | float | str | bytes) -
         raise ValueError(f"Unable to parse value to bytes with unknown type: ({var_type})")
 
 
-def parse_bytes_to_val(retriever: 'Retriever', byte_elements: bytes) -> int | float | str | bytes:
+def parse_bytes_to_val(retriever: 'Retriever', byte_elements: bytes) -> Union[int, float, str, bytes]:
     """
     Decodes the bytes given according to the datatype of the retriever
 

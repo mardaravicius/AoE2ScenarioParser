@@ -1,6 +1,5 @@
-from __future__ import annotations
 
-from typing import List, Tuple, Generator
+from typing import List, Tuple, Generator, Union
 
 from AoE2ScenarioParser.datasets.players import PlayerId
 from AoE2ScenarioParser.objects.aoe2_object import AoE2Object
@@ -57,7 +56,7 @@ class UnitManager(AoE2Object):
                 unit._player = player
 
     def add_unit(self,
-            player: int | PlayerId,
+            player: Union[int, PlayerId],
             unit_const: int,
             x: float = 0,
             y: float = 0,
@@ -67,7 +66,7 @@ class UnitManager(AoE2Object):
             animation_frame: int = 0,
             status: int = 2,
             reference_id: int = None,
-            tile: Tile | Tuple[int, int] = None,
+            tile: Union[Tile, Tuple][int, int] = None,
     ) -> Unit:
         """
         Adds a unit to the scenario.
@@ -110,7 +109,7 @@ class UnitManager(AoE2Object):
         self.units[player].append(unit)
         return unit
 
-    def get_player_units(self, player: int | PlayerId) -> List[Unit]:
+    def get_player_units(self, player: Union[int, PlayerId]) -> List[Unit]:
         """
         Returns a list of UnitObjects for the given player.
 
@@ -165,7 +164,7 @@ class UnitManager(AoE2Object):
             tile1: Tile = None,
             tile2: Tile = None,
             unit_list: List[Unit] = None,
-            players: List[int | PlayerId] = None,
+            players: List[Union[int, PlayerId]] = None,
             ignore_players: List[PlayerId] = None):
         """
         Returns all units in the square with left corner (x1, y1) and right corner (x2, y2). Both corners inclusive.
@@ -220,7 +219,7 @@ class UnitManager(AoE2Object):
         return [unit for unit in unit_list if x1 <= unit.x <= x2 and y1 <= unit.y <= y2 and unit.player in players]
 
     @staticmethod
-    def change_ownership(unit: Unit | List[Unit], to_player: int | PlayerId) -> None:
+    def change_ownership(unit: Union[Unit, List][Unit], to_player: Union[int, PlayerId]) -> None:
         """
         Changes a unit's ownership to the given player.
 

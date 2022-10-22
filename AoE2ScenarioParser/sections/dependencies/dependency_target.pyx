@@ -1,4 +1,3 @@
-from __future__ import annotations
 from typing import List, Union
 from AoE2ScenarioParser.helper.exceptions import InvalidScenarioStructureError
 from AoE2ScenarioParser.helper.pretty_format import pretty_format_list
@@ -20,7 +19,7 @@ class DependencyTarget:
         self.targets = targets
 
     @classmethod
-    def instance_or_none(cls, target: Union[str, List[str]]) -> DependencyTarget | None:
+    def instance_or_none(cls, target: Union[str, List[str]]) -> Union[DependencyTarget, None]:
         """
         Takes in a string or a list of strings indicating the target retriever(s)
 

@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from enum import IntEnum
 from typing import List
 
@@ -23,7 +21,7 @@ class TerrainId(IntEnum):
     """
 
     @staticmethod
-    def water_terrains() -> List[TerrainId]:
+    def water_terrains() -> List['TerrainId']:
         """
         Returns:
             A list of all Water terrains
@@ -41,7 +39,7 @@ class TerrainId(IntEnum):
         ]
 
     @staticmethod
-    def beach_terrains() -> List[TerrainId]:
+    def beach_terrains() -> List['TerrainId']:
         """
         Returns:
             A list of all Beach terrains
@@ -58,7 +56,7 @@ class TerrainId(IntEnum):
         ]
 
     @staticmethod
-    def tree_terrains() -> List[TerrainId]:
+    def tree_terrains() -> List['TerrainId']:
         """
         Returns:
             A list of all Tree terrains

@@ -1,6 +1,6 @@
-from __future__ import annotations
 
 import math
+from typing import Union
 
 from AoE2ScenarioParser.datasets.players import PlayerId
 from AoE2ScenarioParser.helper import helper
@@ -30,7 +30,7 @@ class Unit(AoE2Object):
     ]
 
     def __init__(self,
-                 player: int | PlayerId,
+                 player: Union[int, PlayerId],
                  x: float,
                  y: float,
                  z: float,
@@ -46,7 +46,7 @@ class Unit(AoE2Object):
 
         super().__init__(**kwargs)
 
-        self._player: PlayerId = PlayerId(player)
+        self._player: Union[int, PlayerId] = PlayerId(player)
         self.x: float = x
         self.y: float = y
         self.z: float = z
@@ -58,11 +58,11 @@ class Unit(AoE2Object):
         self.garrisoned_in_id: int = garrisoned_in_id
 
     @property
-    def player(self) -> PlayerId:
+    def player(self) -> Union[int, PlayerId]:
         return self._player
 
     @player.setter
-    def player(self, player: int | PlayerId):
+    def player(self, player: Union[int, PlayerId]):
         actions.unit_change_ownership(self._uuid, player, self)
         self._player = player
 

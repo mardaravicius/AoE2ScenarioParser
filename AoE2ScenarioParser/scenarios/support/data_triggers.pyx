@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import List, Optional, Iterator, Dict
 from uuid import UUID
@@ -43,22 +42,27 @@ class DataTriggers:
             tag = self._resolve_data_trigger_name(trigger)
             for ce in loop_trigger_content(trigger):
                 if trigger.name.startswith("area"):
-                    if area := self._create_area(ce):
+                    area = self._create_area(ce)
+                    if area:
                         self.areas.setdefault(tag, []).append(area)
 
                 elif trigger.name.startswith("tile"):
-                    if tiles := self._create_tiles(ce):
+                    tiles = self._create_tiles(ce)
+                    if tiles :
                         self.tiles.setdefault(tag, []).extend(tiles)
 
                 elif trigger.name.startswith("object"):
                     object_ids.extend(self._get_unit_ids(ce))
-                    if objects := self._get_objects_from_area(ce):
+                    objects = self._get_objects_from_area(ce)
+                    if objects:
                         self.objects.setdefault(tag, []).extend(objects)
-                    if objects := self._get_objects_from_tile(ce):
+                    objects = self._get_objects_from_tile(ce)
+                    if objects:
                         self.objects.setdefault(tag, []).extend(objects)
 
                 elif trigger.name.startswith("trigger"):
-                    if found_trigger := self._get_trigger(ce):
+                    found_trigger = self._get_trigger(ce)
+                    if found_trigger:
                         self.triggers.setdefault(tag, []).append(found_trigger)
 
             if object_ids:

@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 from enum import Enum
-from typing import List
+from typing import List, Union
 
 
 class InfoDatasetBase(Enum):
@@ -27,7 +25,7 @@ class InfoDatasetBase(Enum):
         """
         return {'id': 0, 'icon_id': 1, 'dead_id': 2, 'hotkey_id': 3, 'gaia_only': 4}
 
-    def _get_property(self, name: str) -> int | bool:
+    def _get_property(self, name: str) -> Union[int, bool]:
         """
         Get the specified property by its name from an object of this (or its derived) class
 
@@ -74,12 +72,12 @@ class InfoDatasetBase(Enum):
     def IS_GAIA_ONLY(self) -> bool:
         """
         Returns:
-            A boolean value indicating if the specified unit is a gaia only unit (eg. Deer)
+            A boolean value indicating if the specified unit is a gaia only unit (e.g. Deer)
         """
         return self._get_property('gaia_only')
 
     @classmethod
-    def _from_id(cls, id_type: str, value: int) -> InfoDatasetBase:
+    def _from_id(cls, id_type: str, value: int) -> 'InfoDatasetBase':
         """
         Finds and returns the member object that uses the given value for the specified property (id_type)
 
@@ -97,14 +95,14 @@ class InfoDatasetBase(Enum):
         if value < 0:
             raise ValueError(f"{value} is not a valid id value")
 
-        for member in cls._member_map_.values():
+        for member in cls._member_map_.values():  # type: InfoDatasetBase
             if member.value[index] == value:
                 return member
 
         raise KeyError(f"A unit with {id_type} = {value} was not found in the dataset")
 
     @classmethod
-    def from_id(cls, unit_id: int) -> InfoDatasetBase:
+    def from_id(cls, unit_id: int) -> 'InfoDatasetBase':
         """
         Finds and returns the unit with the given unit ID
 
@@ -117,7 +115,7 @@ class InfoDatasetBase(Enum):
         return cls._from_id('id', unit_id)
 
     @classmethod
-    def from_icon_id(cls, icon_id: int) -> InfoDatasetBase:
+    def from_icon_id(cls, icon_id: int) -> 'InfoDatasetBase':
         """
         Finds and returns the unit with the given icon ID
 
@@ -130,7 +128,7 @@ class InfoDatasetBase(Enum):
         return cls._from_id('icon_id', icon_id)
 
     @classmethod
-    def from_dead_id(cls, dead_id: int) -> InfoDatasetBase:
+    def from_dead_id(cls, dead_id: int) -> 'InfoDatasetBase':
         """
         Finds and returns the unit with the given dead unit ID
 
@@ -143,7 +141,7 @@ class InfoDatasetBase(Enum):
         return cls._from_id('dead_id', dead_id)
 
     @classmethod
-    def from_hotkey_id(cls, hotkey_id: int) -> InfoDatasetBase:
+    def from_hotkey_id(cls, hotkey_id: int) -> 'InfoDatasetBase':
         """
         Finds and returns the unit with the given hotkey ID. Note that there may be multiple units that
         use the same hotkey ID, currently only one is returned!
@@ -157,23 +155,23 @@ class InfoDatasetBase(Enum):
         return cls._from_id('hotkey_id', hotkey_id)
 
     @classmethod
-    def gaia_only(cls) -> List[InfoDatasetBase]:
+    def gaia_only(cls) -> List['InfoDatasetBase']:
         """
         Returns:
-            A list of all the gaia only units (eg. Deer)
+            A list of all the gaia only units (e.g. Deer)
         """
         return cls._gaia_filter(gaia_only=True)
 
     @classmethod
-    def non_gaia(cls) -> List[InfoDatasetBase]:
+    def non_gaia(cls) -> List['InfoDatasetBase']:
         """
         Returns:
-            A list of all the units excluding gaia only units (eg. militia)
+            A list of all the units excluding gaia only units (e.g. militia)
         """
         return cls._gaia_filter(gaia_only=False)
 
     @classmethod
-    def _gaia_filter(cls, gaia_only: bool) -> List[InfoDatasetBase]:
+    def _gaia_filter(cls, gaia_only: bool) -> List['InfoDatasetBase']:
         """
         Args:
             gaia_only: if set to true, lists all gaia only units. If set to false, lists all units except gaia only units

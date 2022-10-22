@@ -1,8 +1,7 @@
-from __future__ import annotations
 
 import math
 from enum import Enum
-from typing import Tuple, Any
+from typing import Tuple, Any, Union
 
 from AoE2ScenarioParser.datasets.buildings import BuildingInfo
 from AoE2ScenarioParser.datasets.heroes import HeroInfo
@@ -79,7 +78,7 @@ def values_are_valid(*args: Any) -> bool:
     return any(map(lambda v: v not in [None, -1], args))
 
 
-def get_enum_from_unit_const(unit_const: int) -> InfoDatasetBase | None:
+def get_enum_from_unit_const(unit_const: int) -> Union[InfoDatasetBase, None]:
     """
     Get the enum value for the given unit constant
 

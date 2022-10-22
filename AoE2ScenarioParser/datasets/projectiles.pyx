@@ -1,8 +1,8 @@
-from __future__ import annotations
-
 import json
 from enum import Enum
 from pathlib import Path
+
+from typing import Tuple
 
 with open(Path(__file__).parent / 'sources' / f'unit_projectile_info.json') as file:
     # Open projectiles source-file for raw data. Used in `ProjectileInfo.get_unit_projectile(...)`
@@ -40,7 +40,7 @@ class ProjectileInfo(Enum):
         return self.value[0]
 
     @property
-    def USED_BY(self) -> tuple[int]:
+    def USED_BY(self) -> Tuple[int]:
         """
         Returns:
             A tuple of unit IDs that use the specified projectile unit
@@ -63,7 +63,7 @@ class ProjectileInfo(Enum):
         if projectile_id == -1:
             raise ValueError("-1 is not a valid projectile ID")
 
-        for projectile in cls._member_map_.values():
+        for projectile in cls._member_map_.values():  # type: ProjectileInfo
             if projectile.value[0] == projectile_id:
                 return projectile
 

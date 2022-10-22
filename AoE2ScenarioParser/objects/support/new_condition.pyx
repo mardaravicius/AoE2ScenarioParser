@@ -1,4 +1,4 @@
-from __future__ import annotations
+from typing import Union
 
 from AoE2ScenarioParser.datasets.conditions import ConditionId
 from AoE2ScenarioParser.objects.data_objects.condition import Condition
@@ -17,12 +17,12 @@ class NewConditionSupport:
 
     def bring_object_to_area(
             self,
-            unit_object: int | None = None,
-            area_x1: int | None = None,
-            area_y1: int | None = None,
-            area_x2: int | None = None,
-            area_y2: int | None = None,
-            inverted: int | None = None,
+            unit_object: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.BRING_OBJECT_TO_AREA,
@@ -36,9 +36,9 @@ class NewConditionSupport:
 
     def bring_object_to_object(
             self,
-            unit_object: int | None = None,
-            next_object: int | None = None,
-            inverted: int | None = None,
+            unit_object: Union[int, None] = None,
+            next_object: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.BRING_OBJECT_TO_OBJECT,
@@ -49,12 +49,12 @@ class NewConditionSupport:
 
     def own_objects(
             self,
-            quantity: int | None = None,
-            object_list: int | None = None,
-            source_player: int | None = None,
-            object_group: int | None = None,
-            object_type: int | None = None,
-            include_changeable_weapon_objects: int | None = None,
+            quantity: Union[int, None] = None,
+            object_list: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            object_group: Union[int, None] = None,
+            object_type: Union[int, None] = None,
+            include_changeable_weapon_objects: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OWN_OBJECTS,
@@ -68,16 +68,16 @@ class NewConditionSupport:
 
     def own_fewer_objects(
             self,
-            quantity: int | None = None,
-            object_list: int | None = None,
-            source_player: int | None = None,
-            area_x1: int | None = None,
-            area_y1: int | None = None,
-            area_x2: int | None = None,
-            area_y2: int | None = None,
-            object_group: int | None = None,
-            object_type: int | None = None,
-            include_changeable_weapon_objects: int | None = None,
+            quantity: Union[int, None] = None,
+            object_list: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            object_group: Union[int, None] = None,
+            object_type: Union[int, None] = None,
+            include_changeable_weapon_objects: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OWN_FEWER_OBJECTS,
@@ -95,18 +95,18 @@ class NewConditionSupport:
 
     def objects_in_area(
             self,
-            quantity: int | None = None,
-            object_list: int | None = None,
-            source_player: int | None = None,
-            area_x1: int | None = None,
-            area_y1: int | None = None,
-            area_x2: int | None = None,
-            area_y2: int | None = None,
-            object_group: int | None = None,
-            object_type: int | None = None,
-            inverted: int | None = None,
-            object_state: int | None = None,
-            include_changeable_weapon_objects: int | None = None,
+            quantity: Union[int, None] = None,
+            object_list: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            object_group: Union[int, None] = None,
+            object_type: Union[int, None] = None,
+            inverted: Union[int, None] = None,
+            object_state: Union[int, None] = None,
+            include_changeable_weapon_objects: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OBJECTS_IN_AREA,
@@ -126,8 +126,8 @@ class NewConditionSupport:
 
     def destroy_object(
             self,
-            unit_object: int | None = None,
-            inverted: int | None = None,
+            unit_object: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.DESTROY_OBJECT,
@@ -137,9 +137,9 @@ class NewConditionSupport:
 
     def capture_object(
             self,
-            unit_object: int | None = None,
-            source_player: int | None = None,
-            inverted: int | None = None,
+            unit_object: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.CAPTURE_OBJECT,
@@ -150,10 +150,10 @@ class NewConditionSupport:
 
     def accumulate_attribute(
             self,
-            quantity: int | None = None,
-            attribute: int | None = None,
-            source_player: int | None = None,
-            inverted: int | None = None,
+            quantity: Union[int, None] = None,
+            attribute: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.ACCUMULATE_ATTRIBUTE,
@@ -165,9 +165,9 @@ class NewConditionSupport:
 
     def research_technology(
             self,
-            source_player: int | None = None,
-            technology: int | None = None,
-            inverted: int | None = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.RESEARCH_TECHNOLOGY,
@@ -178,8 +178,8 @@ class NewConditionSupport:
 
     def timer(
             self,
-            timer: int | None = None,
-            inverted: int | None = None,
+            timer: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.TIMER,
@@ -189,8 +189,8 @@ class NewConditionSupport:
 
     def object_selected(
             self,
-            unit_object: int | None = None,
-            inverted: int | None = None,
+            unit_object: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OBJECT_SELECTED,
@@ -200,8 +200,8 @@ class NewConditionSupport:
 
     def ai_signal(
             self,
-            ai_signal: int | None = None,
-            inverted: int | None = None,
+            ai_signal: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.AI_SIGNAL,
@@ -211,8 +211,8 @@ class NewConditionSupport:
 
     def player_defeated(
             self,
-            source_player: int | None = None,
-            inverted: int | None = None,
+            source_player: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.PLAYER_DEFEATED,
@@ -222,12 +222,12 @@ class NewConditionSupport:
 
     def object_has_target(
             self,
-            unit_object: int | None = None,
-            next_object: int | None = None,
-            object_list: int | None = None,
-            object_group: int | None = None,
-            object_type: int | None = None,
-            inverted: int | None = None,
+            unit_object: Union[int, None] = None,
+            next_object: Union[int, None] = None,
+            object_list: Union[int, None] = None,
+            object_group: Union[int, None] = None,
+            object_type: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OBJECT_HAS_TARGET,
@@ -241,7 +241,7 @@ class NewConditionSupport:
 
     def object_visible(
             self,
-            unit_object: int | None = None,
+            unit_object: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OBJECT_VISIBLE,
@@ -250,7 +250,7 @@ class NewConditionSupport:
 
     def object_not_visible(
             self,
-            unit_object: int | None = None,
+            unit_object: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OBJECT_NOT_VISIBLE,
@@ -259,9 +259,9 @@ class NewConditionSupport:
 
     def researching_tech(
             self,
-            source_player: int | None = None,
-            technology: int | None = None,
-            inverted: int | None = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.RESEARCHING_TECH,
@@ -272,9 +272,9 @@ class NewConditionSupport:
 
     def units_garrisoned(
             self,
-            quantity: int | None = None,
-            unit_object: int | None = None,
-            inverted: int | None = None,
+            quantity: Union[int, None] = None,
+            unit_object: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.UNITS_GARRISONED,
@@ -285,8 +285,8 @@ class NewConditionSupport:
 
     def difficulty_level(
             self,
-            quantity: int | None = None,
-            inverted: int | None = None,
+            quantity: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.DIFFICULTY_LEVEL,
@@ -296,7 +296,7 @@ class NewConditionSupport:
 
     def chance(
             self,
-            quantity: int | None = None,
+            quantity: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.CHANCE,
@@ -305,10 +305,10 @@ class NewConditionSupport:
 
     def technology_state(
             self,
-            quantity: int | None = None,
-            source_player: int | None = None,
-            technology: int | None = None,
-            inverted: int | None = None,
+            quantity: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.TECHNOLOGY_STATE,
@@ -320,10 +320,10 @@ class NewConditionSupport:
 
     def variable_value(
             self,
-            quantity: int | None = None,
-            inverted: int | None = None,
-            variable: int | None = None,
-            comparison: int | None = None,
+            quantity: Union[int, None] = None,
+            inverted: Union[int, None] = None,
+            variable: Union[int, None] = None,
+            comparison: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.VARIABLE_VALUE,
@@ -335,10 +335,10 @@ class NewConditionSupport:
 
     def object_hp(
             self,
-            quantity: int | None = None,
-            unit_object: int | None = None,
-            inverted: int | None = None,
-            comparison: int | None = None,
+            quantity: Union[int, None] = None,
+            unit_object: Union[int, None] = None,
+            inverted: Union[int, None] = None,
+            comparison: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OBJECT_HP,
@@ -350,10 +350,10 @@ class NewConditionSupport:
 
     def diplomacy_state(
             self,
-            quantity: int | None = None,
-            source_player: int | None = None,
-            inverted: int | None = None,
-            target_player: int | None = None,
+            quantity: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            inverted: Union[int, None] = None,
+            target_player: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.DIPLOMACY_STATE,
@@ -365,7 +365,7 @@ class NewConditionSupport:
 
     def script_call(
             self,
-            xs_function: str | None = None,
+            xs_function: Union[str, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.SCRIPT_CALL,
@@ -374,9 +374,9 @@ class NewConditionSupport:
 
     def object_visible_multiplayer(
             self,
-            unit_object: int | None = None,
-            source_player: int | None = None,
-            inverted: int | None = None,
+            unit_object: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OBJECT_VISIBLE_MULTIPLAYER,
@@ -387,9 +387,9 @@ class NewConditionSupport:
 
     def object_selected_multiplayer(
             self,
-            unit_object: int | None = None,
-            source_player: int | None = None,
-            inverted: int | None = None,
+            unit_object: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OBJECT_SELECTED_MULTIPLAYER,
@@ -400,13 +400,13 @@ class NewConditionSupport:
 
     def object_has_action(
             self,
-            unit_object: int | None = None,
-            next_object: int | None = None,
-            object_list: int | None = None,
-            object_group: int | None = None,
-            object_type: int | None = None,
-            inverted: int | None = None,
-            unit_ai_action: int | None = None,
+            unit_object: Union[int, None] = None,
+            next_object: Union[int, None] = None,
+            object_list: Union[int, None] = None,
+            object_group: Union[int, None] = None,
+            object_type: Union[int, None] = None,
+            inverted: Union[int, None] = None,
+            unit_ai_action: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.OBJECT_HAS_ACTION,
@@ -428,8 +428,8 @@ class NewConditionSupport:
 
     def ai_signal_multiplayer(
             self,
-            ai_signal: int | None = None,
-            inverted: int | None = None,
+            ai_signal: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.AI_SIGNAL_MULTIPLAYER,
@@ -446,8 +446,8 @@ class NewConditionSupport:
 
     def building_is_trading(
             self,
-            unit_object: int | None = None,
-            inverted: int | None = None,
+            unit_object: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.BUILDING_IS_TRADING,
@@ -457,8 +457,8 @@ class NewConditionSupport:
 
     def display_timer_triggered(
             self,
-            timer_id: int | None = None,
-            inverted: int | None = None,
+            timer_id: Union[int, None] = None,
+            inverted: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.DISPLAY_TIMER_TRIGGERED,
@@ -468,11 +468,11 @@ class NewConditionSupport:
 
     def victory_timer(
             self,
-            quantity: int | None = None,
-            source_player: int | None = None,
-            inverted: int | None = None,
-            comparison: int | None = None,
-            victory_timer_type: int | None = None,
+            quantity: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            inverted: Union[int, None] = None,
+            comparison: Union[int, None] = None,
+            victory_timer_type: Union[int, None] = None,
     ) -> Condition:
         return self._trigger_ref._add_condition(
             ConditionId.VICTORY_TIMER,

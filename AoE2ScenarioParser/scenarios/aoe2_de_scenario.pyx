@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from AoE2ScenarioParser.objects.managers.de.map_manager_de import MapManagerDE
 from AoE2ScenarioParser.objects.managers.de.trigger_manager_de import TriggerManagerDE

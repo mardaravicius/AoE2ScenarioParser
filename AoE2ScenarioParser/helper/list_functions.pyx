@@ -1,6 +1,6 @@
 from typing import List, Any, Type
 
-def hash_list(lst: Type[List[Any]]):
+def hash_list(lst: List[Any]):
     return hash(tuple(lst))
 
 

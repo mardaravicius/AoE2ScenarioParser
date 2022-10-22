@@ -1,4 +1,3 @@
-from __future__ import annotations
 
 from typing import Dict, Type, TypeVar
 from uuid import UUID

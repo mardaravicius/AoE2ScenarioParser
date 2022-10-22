@@ -1,7 +1,6 @@
-from __future__ import annotations
 
 import itertools
-from typing import List, Tuple, Set
+from typing import List, Tuple, Set, Union
 
 from AoE2ScenarioParser.helper import helper
 from AoE2ScenarioParser.helper.helper import xy_to_i
@@ -16,7 +15,7 @@ from AoE2ScenarioParser.sections.retrievers.retriever_object_link_group import R
 
 
 class MapManager(AoE2Object):
-    """Manager of the everything map related."""
+    """Manager of everything map related."""
 
     _link_list = [
         RetrieverObjectLinkGroup("Map", group=[
@@ -49,7 +48,7 @@ class MapManager(AoE2Object):
             return self.terrain[i]
         return self.terrain[xy_to_i(x, y, self.map_size)]
 
-    def get_tile_safe(self, x: int = None, y: int = None, i: int = None) -> TerrainTile | None:
+    def get_tile_safe(self, x: int = None, y: int = None, i: int = None) -> Union[TerrainTile, None]:
         if i and (x or y):
             raise ValueError("Cannot use both xy and i. Choose or XY or I.")
         try:
@@ -165,8 +164,8 @@ class MapManager(AoE2Object):
             elevation: int,
             x1: int,
             y1: int,
-            x2: int | None = None,
-            y2: int | None = None
+            x2: Union[int, None] = None,
+            y2: Union[int, None] = None
     ) -> None:
         """
         Sets elevation like the in-game elevation mechanics. Can set a hill (or single point) to a certain height and
