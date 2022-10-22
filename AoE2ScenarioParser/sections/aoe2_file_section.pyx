@@ -83,7 +83,7 @@ class AoE2FileSection:
         return self.struct_models[struct_name]
 
     @classmethod
-    def from_model(cls, model: AoE2StructModel, uuid: UUID, set_defaults: bool = False) -> AoE2FileSection:
+    def from_model(cls, model: AoE2StructModel, uuid: UUID, set_defaults: bool = False) -> 'AoE2FileSection':
         """
         Create a file section based on the given AoE2StructModel.
 

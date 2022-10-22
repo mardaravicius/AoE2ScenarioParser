@@ -19,7 +19,7 @@ class DependencyTarget:
         self.targets = targets
 
     @classmethod
-    def instance_or_none(cls, target: Union[str, List[str]]) -> Union[DependencyTarget, None]:
+    def instance_or_none(cls, target: Union[str, List[str]]) -> Union['DependencyTarget', None]:
         """
         Takes in a string or a list of strings indicating the target retriever(s)
 

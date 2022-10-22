@@ -49,7 +49,7 @@ def get_units_in_area(uuid: UUID, x1: int, y1: int, x2: int, y2: int) -> Optiona
     return None
 
 
-def get_units(uuid: UUID, unit_reference_ids: List[int]) -> Tuple[List['Unit'], List[int]] | None:
+def get_units(uuid: UUID, unit_reference_ids: List[int]) -> Tuple[List['Unit'], List[int], None]:
     """
     Get a placed unit based on it's reference id in a scenario.
 

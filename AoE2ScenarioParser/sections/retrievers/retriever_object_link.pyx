@@ -173,7 +173,7 @@ class RetrieverObjectLink(RetrieverObjectLinkParent):
         self.push_to_link(uuid, host_obj.instance_number_history, host_obj)
 
     @staticmethod
-    def commit_object_list(object_list: List['AoE2Object'] | UuidList['AoE2Object'], instance_number_history: List[int]):
+    def commit_object_list(object_list: List['AoE2Object'], instance_number_history: List[int]):
         for index, obj in enumerate(object_list):
             obj._instance_number_history = instance_number_history + [index]
             obj.commit()

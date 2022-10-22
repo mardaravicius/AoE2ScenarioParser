@@ -9,3 +9,5 @@ class ConstructProgress(NamedTuple):
     """a docstring"""
     section: 'AoE2FileSection'
     done: int
+
+    __annotations__ = {'section': 'AoE2FileSection', 'done': int}

@@ -4,7 +4,7 @@ from typing import List, Union
 
 class PlayerId(IntEnum):
     @staticmethod
-    def all(exclude_gaia: bool = False) -> List[PlayerId]:
+    def all(exclude_gaia: bool = False) -> List['PlayerId']:
         """
         Return a list of all players
 

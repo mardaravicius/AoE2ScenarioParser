@@ -48,7 +48,7 @@ def _format_variable_id_representation(id_: int, uuid: UUID) -> str:
     return _store_error_displays['variables']['invalid_reference']()
 
 
-def _format_unit_reference_representation(ref_id: Union[int, List][int], uuid: UUID) -> str:
+def _format_unit_reference_representation(ref_id: Union[int, List[int]], uuid: UUID) -> str:
     def format_unit(u: 'Unit') -> str:
         enum_entry = u.unit_const
         if not issubclass(u.unit_const.__class__, InfoDatasetBase):

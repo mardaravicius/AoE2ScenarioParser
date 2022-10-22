@@ -11,7 +11,7 @@ from AoE2ScenarioParser.sections.retrievers.retriever_object_link import Retriev
 
 
 class UnitManager(AoE2Object):
-    """Manager of the everything trigger related."""
+    """Manager of everything unit related."""
 
     _link_list = [
         RetrieverObjectLink("_player_units", "Units", "players_units", process_as_object=PlayerUnits),
@@ -66,7 +66,7 @@ class UnitManager(AoE2Object):
             animation_frame: int = 0,
             status: int = 2,
             reference_id: int = None,
-            tile: Union[Tile, Tuple][int, int] = None,
+            tile: Union[Tile, Tuple[int, int]] = None,
     ) -> Unit:
         """
         Adds a unit to the scenario.
@@ -219,7 +219,7 @@ class UnitManager(AoE2Object):
         return [unit for unit in unit_list if x1 <= unit.x <= x2 and y1 <= unit.y <= y2 and unit.player in players]
 
     @staticmethod
-    def change_ownership(unit: Union[Unit, List][Unit], to_player: Union[int, PlayerId]) -> None:
+    def change_ownership(unit: Union[Unit, List[Unit]], to_player: Union[int, PlayerId]) -> None:
         """
         Changes a unit's ownership to the given player.
 

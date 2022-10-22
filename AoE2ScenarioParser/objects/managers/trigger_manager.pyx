@@ -42,7 +42,7 @@ class TriggerManager(AoE2Object):
         self._trigger_hash = hash_list(triggers)
 
     @property
-    def triggers(self) -> UuidList[Trigger]:
+    def triggers(self) -> List[Trigger]:
         return self._triggers
 
     @triggers.setter
@@ -207,7 +207,7 @@ class TriggerManager(AoE2Object):
             include_player_target: bool = False,
             trigger_ce_lock: Union[TriggerCELock, None] = None,
             include_gaia: bool = False,
-            create_copy_for_players: List[IntEnum] | None = None,
+            create_copy_for_players: Union[List[IntEnum], None] = None,
             group_triggers_by: Union[GroupBy, None] = None
     ) -> Dict[IntEnum, List[Trigger]]:
         """
@@ -482,8 +482,8 @@ class TriggerManager(AoE2Object):
             looping: Union[bool, None] = None,
             header: Union[bool, None] = None,
             mute_objectives: Union[bool, None] = None,
-            conditions: List[Condition] | None = None,
-            effects: List[Effect] | None = None
+            conditions: Union[List[Condition], None] = None,
+            effects: Union[List[Effect], None] = None
     ) -> Trigger:
         """
         Adds a new trigger to the scenario.

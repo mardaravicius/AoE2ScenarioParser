@@ -38,7 +38,7 @@ class RetrieverDependency:
         self.dependency_eval = dependency_eval
 
     @classmethod
-    def from_structure(cls, structure: dict) -> RetrieverDependency:
+    def from_structure(cls, structure: dict) -> 'RetrieverDependency':
         """
         Creates a RetrieverDependency object from the given dependency structure.
 

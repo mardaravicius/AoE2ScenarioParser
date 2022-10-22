@@ -1,5 +1,5 @@
 
-from typing import Any, List, Type, Dict, TYPE_CHECKING, Optional
+from typing import Any, List, Type, Dict, TYPE_CHECKING, Optional, Union
 from uuid import UUID
 
 from AoE2ScenarioParser.scenarios.scenario_store import getters
@@ -69,7 +69,7 @@ class RetrieverObjectLinkParent:
             uuid: UUID = None,
             progress: ConstructProgress = None,
             number_hist: List[int] = None,
-    ) -> 'Retriever' | Any:
+    ) -> Union['Retriever', Any]:
         """
         Retrieve a retriever or the value inside it from a given link. Starting point (where the link should start
         looking from) can be from the scenario sections (if ``from_section`` is left empty). If ``from_section`` is not

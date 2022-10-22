@@ -135,20 +135,20 @@ class Trigger(AoE2Object, TriggerComponent):
         self._effect_order = val
 
     @property
-    def conditions(self) -> Type[List[Condition]]:
+    def conditions(self) -> List[Condition]:
         return self._conditions
 
     @conditions.setter
-    def conditions(self, val: Type[List[Condition]]) -> None:
+    def conditions(self, val: List[Condition]) -> None:
         self._conditions = UuidList(self._uuid, val)
         self.condition_order = list(range(0, len(val)))
 
     @property
-    def effects(self) -> Type[List[Effect]]:
+    def effects(self) -> List[Effect]:
         return self._effects
 
     @effects.setter
-    def effects(self, val: Type[List[Effect]]) -> None:
+    def effects(self, val: List[Effect]) -> None:
         self._effects = UuidList(self._uuid, val)
         self.effect_order = list(range(0, len(val)))
 

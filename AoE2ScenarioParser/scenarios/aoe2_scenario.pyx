@@ -306,7 +306,7 @@ class AoE2Scenario:
 
     def _debug_compare(
             self,
-            other: AoE2Scenario,
+            other: 'AoE2Scenario',
             filename: str = "differences.txt",
             commit: bool = False
     ) -> None:

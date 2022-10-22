@@ -16,7 +16,7 @@ class IncrementalGenerator:
         self.progress = progress
 
     @classmethod
-    def from_file(cls, filepath: str) -> IncrementalGenerator:
+    def from_file(cls, filepath: str) -> 'IncrementalGenerator':
         """
         Creates and returns an instance of the IncrementalGenerator class from the given file
 
@@ -58,7 +58,7 @@ class IncrementalGenerator:
 
     def get_remaining_bytes(self) -> bytes:
         """
-        Get all of the remaining bytes in the generator
+        Get all the remaining bytes in the generator
 
         Returns:
             The remaining bytes of the generator

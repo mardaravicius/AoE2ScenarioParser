@@ -1,5 +1,4 @@
-
-from typing import List
+from typing import List, Union
 
 
 class TriggerCELock:
@@ -7,10 +6,10 @@ class TriggerCELock:
             self,
             lock_conditions: bool = False,
             lock_effects: bool = False,
-            lock_condition_type: List[int] | None = None,
-            lock_effect_type: List[int] | None = None,
-            lock_condition_ids: List[int] | None = None,
-            lock_effect_ids: List[int] | None = None
+            lock_condition_type: Union[List[int], None] = None,
+            lock_effect_type: Union[List[int], None] = None,
+            lock_condition_ids: Union[List[int], None] = None,
+            lock_effect_ids: Union[List[int], None] = None
     ):
         """
         Object used to identify which conditions and effects should be locked from change.

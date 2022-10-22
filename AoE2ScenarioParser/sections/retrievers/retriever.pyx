@@ -165,7 +165,7 @@ class Retriever:
 
         self.data = data
 
-    def duplicate(self) -> Retriever:
+    def duplicate(self) -> 'Retriever':
         """
         Creates and returns a copy of the retriever object
 
@@ -185,7 +185,7 @@ class Retriever:
         return retriever
 
     @classmethod
-    def from_structure(cls, name: str, structure: dict) -> Retriever:
+    def from_structure(cls, name: str, structure: dict) -> 'Retriever':
         """
         Creates a Retriever object from the given name and structure
 

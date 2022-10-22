@@ -1,10 +1,4 @@
-import typing
-
-_KT = typing.TypeVar("_KT")  # Key type
-_VT = typing.TypeVar("_VT")  # Value type
-
-
-class AttrDict(dict, typing.Mapping[_KT, _VT]):
+class AttrDict(dict):
     def __init__(self, *args):
         dict.__init__(self, args)
 

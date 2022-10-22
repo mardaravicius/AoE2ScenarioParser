@@ -43,7 +43,7 @@ class AoE2DEScenario(AoE2Scenario):
         return self._object_manager.managers['Message']
 
     @classmethod
-    def from_file(cls, filename: str, game_version: str = "DE") -> AoE2DEScenario:
+    def from_file(cls, filename: str, game_version: str = "DE") -> 'AoE2DEScenario':
         """
         Creates and returns an instance of the AoE2DEScenario class from the given scenario file
 

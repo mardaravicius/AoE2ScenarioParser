@@ -6,7 +6,7 @@ class DependencyEval:
     """
     Provides the objects for storing dependency eval code and it's locals.
     """
-    def __init__(self, eval_code: str, eval_locals: Dict[str, str] | None = None):
+    def __init__(self, eval_code: str, eval_locals: Union[Dict[str, str], None] = None):
         """
         Args:
             eval_code: The code executed using eval
@@ -19,7 +19,7 @@ class DependencyEval:
         self.eval_locals: Dict[str, str] = eval_locals
 
     @classmethod
-    def instance_or_none(cls, eval_code: Union[str, None]) -> Union[DependencyEval, None]:
+    def instance_or_none(cls, eval_code: Union[str, None]) -> Union['DependencyEval', None]:
         """
         Returns a DependencyEval instance created from the given code
 

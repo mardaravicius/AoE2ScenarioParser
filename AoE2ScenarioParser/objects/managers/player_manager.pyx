@@ -69,7 +69,7 @@ class PlayerManager(AoE2Object):
             _allied_victories: List[int],
             _starting_ages: List[int],
             _base_priorities: List[int],
-            _pop_caps: List[int] | None,
+            _pop_caps: Union[List[int], None],
             _player_data_4: List[PlayerDataFour],
             _player_data_3: List[PlayerDataThree],
             **kwargs
@@ -128,7 +128,7 @@ class PlayerManager(AoE2Object):
             setattr(self.players[player_id], '_active', player_id <= value)
 
     @property
-    def players(self) -> UuidList[Player]:
+    def players(self) -> List[Player]:
         """Returns all player objects"""
         return self._players
 
@@ -242,7 +242,7 @@ class PlayerManager(AoE2Object):
         ])
 
     @property
-    def _player_data_3(self) -> UuidList[PlayerDataThree]:
+    def _player_data_3(self) -> List[PlayerDataThree]:
         """Returns the resource objects for all players"""
         original_map: Dict[int, str] = {0: 'ally', 1: 'neutral', 3: 'enemy'}
         mappings: Dict[str, Dict[str, int]] = {

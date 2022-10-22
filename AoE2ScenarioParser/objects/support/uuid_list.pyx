@@ -9,7 +9,7 @@ _T = TypeVar('_T')
 NO_UUID = "<<NO_UUID>>"
 
 
-class UuidList(list, Generic[_T]):
+class UuidList(list):
     def __init__(
             self,
             uuid: UUID,

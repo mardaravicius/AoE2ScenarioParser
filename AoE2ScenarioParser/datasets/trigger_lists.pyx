@@ -22,9 +22,6 @@ class DiplomacyState(_DataSetIntEnums):
     ENEMY = 3
 
 
-print(DiplomacyState(DiplomacyState.ALLY))
-
-
 class Operation(_DataSetIntEnums):
     """
     This enum class provides the integer values used to reference the operations in the game. Used in a lot of effects
@@ -2550,10 +2547,10 @@ class HeroStatusFlag(_DataSetIntFlags):
 
     >>> HeroStatusFlag.HERO_REGENERATION
     <HeroStatusFlag.HERO_REGENERATION: 4>
-    >>> HeroStatusFlag.Union[HERO_REGENERATION | HeroStatusFlag].HERO_GLOW
-    <HeroStatusFlag.Union[HERO_GLOW|HERO_REGENERATION]: 68>
+    >>> HeroStatusFlag.HERO_REGENERATION | HeroStatusFlag.HERO_GLOW
+    <HeroStatusFlag.HERO_GLOW|HERO_REGENERATION: 68>
     >>> HeroStatusFlag.combine(hero_regeneration=True, hero_glow=True)
-    <HeroStatusFlag.Union[HERO_GLOW|HERO_REGENERATION]: 68>
+    <HeroStatusFlag.HERO_GLOW|HERO_REGENERATION: 68>
     """
 
     @staticmethod
@@ -2566,7 +2563,7 @@ class HeroStatusFlag(_DataSetIntFlags):
             delete_confirmation: bool = False,
             hero_glow: bool = False,
             invert_all_flags: bool = False
-    ) -> HeroStatusFlag:
+    ) -> 'HeroStatusFlag':
         """
         This method combines the given hero status flags into an integer value
 
@@ -2595,7 +2592,7 @@ class HeroStatusFlag(_DataSetIntFlags):
         return HeroStatusFlag(total)
 
     @staticmethod
-    def split_flags(value: int) -> Dict[HeroStatusFlag, bool]:
+    def split_flags(value: int) -> Dict['HeroStatusFlag', bool]:
         """
         Split the Hero Status flags into boolean variables related to their effects
 
@@ -2681,8 +2678,8 @@ class ProjectileSmartMode(_DataSetIntFlags):
 
     **Examples**
 
-    >>> ProjectileSmartMode.HAS_BALLISTICS
-    <ProjectileSmartMode.HAS_BALLISTICS: 1>
+    >>> ProjectileSmartMode.TARGET_FUTURE_LOCATION
+    <ProjectileSmartMode.TARGET_FUTURE_LOCATION: 1>
     """
     TARGET_CURRENT_LOCATION = 0
     TARGET_FUTURE_LOCATION = 1
@@ -2920,8 +2917,8 @@ class SecondaryGameMode(_DataSetIntFlags):
 
     >>> SecondaryGameMode.EMPIRE_WARS
     <SecondaryGameMode.EMPIRE_WARS: 1>
-    >>> SecondaryGameMode.Union[SUDDEN_DEATH | SecondaryGameMode].REGICIDE
-    <HeroStatusFlag.Union[SUDDEN_DEATH|REGICIDE]: 6>
+    >>> SecondaryGameMode.SUDDEN_DEATH | SecondaryGameMode.REGICIDE
+    <SecondaryGameMode.SUDDEN_DEATH|REGICIDE]: 6>
     """
 
     # todo: we can probably add this to the base dataset int flags class, I have an idea on how to generic-ify this
@@ -2932,7 +2929,7 @@ class SecondaryGameMode(_DataSetIntFlags):
             sudden_death: bool = False,
             regicide: bool = False,
             king_of_the_hill: bool = False,
-    ) -> SecondaryGameMode:
+    ) -> 'SecondaryGameMode':
         """
         This method combines the given hero status flags into an integer value
 
@@ -2994,8 +2991,8 @@ class ChargeEvent(_DataSetIntEnums):
 
     **Examples**
 
-    >>> ChargeEvent.DEPLETES_CHARGE_ON_ATTACKING
-    <ChargeEvent.DEPLETES_CHARGE_ON_ATTACKING: 1>
+    >>> ChargeEvent.CHARGE_DEPLETED_ON_ATTACK
+    <ChargeEvent.CHARGE_DEPLETED_ON_ATTACK: 1>
     """
     NO_CHARGE_DEPLETED = 0
     CHARGE_DEPLETED_ON_ATTACK = 1
@@ -3063,8 +3060,8 @@ class OcclusionMode(_DataSetIntFlags):
 
     **Examples**
 
-    >>> OcclusionMode.NO_OUTLINE
-    <OcclusionMode.NO_OUTLINE: 0>
+    >>> OcclusionMode.NO_OCCLUSION
+    <OcclusionMode.NO_OCCLUSION: 0>
     """
     NO_OCCLUSION = 0
     """
@@ -3129,8 +3126,8 @@ class UnitTrait(_DataSetIntFlags):
 
     **Examples**
 
-    >>> UnitTrait.NO_OUTLINE
-    <UnitTrait.NO_OUTLINE: 0>
+    >>> UnitTrait.BUILD_BUILDING
+    <UnitTrait.BUILD_BUILDING: 4>
     """
     GARRISONABLE = 1
     SHIP = 2

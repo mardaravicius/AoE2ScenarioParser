@@ -50,7 +50,7 @@ class DataType:
                     * **c4**: A 32 bit (4 bytes) character string.
                     * **str16**: A 16 bit integer will be parsed (n). Now n bytes will be read as character string.
                     * **TerrainStruct**: The TerrainStruct will be instantiated and DataTypes from that struct will be
-                      loaded in it's place.
+                      loaded in its place.
 
             repeat:
                 The amount of times the above datatype needs to be repeated
@@ -115,7 +115,7 @@ class DataType:
         """
         return f"{self._repeat} * {self.var}"
 
-    def duplicate(self) -> DataType:
+    def duplicate(self) -> 'DataType':
         """
         Create another datatype instance with the same values as this one
 

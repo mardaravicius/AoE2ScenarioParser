@@ -15,7 +15,7 @@ class AoE2StructModel:
     repeated many times in a scenario. Thus, these struct models are actually always the same for a given version of a
     scenario. The actual data is held in file sections which are unique to each scenario file read.
     """
-    def __init__(self, name: str, retriever_map: Dict[str, Retriever], structs: Dict[str, AoE2StructModel]):
+    def __init__(self, name: str, retriever_map: Dict[str, Retriever], structs: Dict[str, 'AoE2StructModel']):
         """
         Args:
             name: The name of the structure being built
@@ -27,7 +27,7 @@ class AoE2StructModel:
         self.structs = structs
 
     @classmethod
-    def from_structure(cls, name: str, structure: Dict[str, Dict]) -> AoE2StructModel:
+    def from_structure(cls, name: str, structure: Dict[str, Dict]) -> 'AoE2StructModel':
         """
         Recursively constructs all retrievers and sub-structures inside a given structure from its dictionary
         representation.
@@ -51,7 +51,7 @@ class AoE2StructModel:
         return f"[AoE2StructModel] {self.name} -> retrievers: " + pretty_format_dict(self.retriever_map)
 
 
-def model_dict_from_structure(structure: Dict[str, Dict]) -> Dict[str, AoE2StructModel]:
+def model_dict_from_structure(structure: Dict[str, Dict]) -> Dict[str, 'AoE2StructModel']:
     """
     Constructs all the structures in a given file section
 

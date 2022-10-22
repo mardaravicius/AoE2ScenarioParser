@@ -91,7 +91,7 @@ class NewEffectSupport:
 
     def unlock_gate(
             self,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.UNLOCK_GATE,
@@ -100,7 +100,7 @@ class NewEffectSupport:
 
     def lock_gate(
             self,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.LOCK_GATE,
@@ -165,7 +165,7 @@ class NewEffectSupport:
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
             action_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.TASK_OBJECT,
@@ -205,7 +205,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.KILL_OBJECT,
@@ -231,7 +231,7 @@ class NewEffectSupport:
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
             object_state: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.REMOVE_OBJECT,
@@ -275,7 +275,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.UNLOAD,
@@ -305,7 +305,7 @@ class NewEffectSupport:
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
             flash_object: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OWNERSHIP,
@@ -334,7 +334,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.PATROL,
@@ -393,7 +393,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.FREEZE_OBJECT,
@@ -426,7 +426,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.DAMAGE_OBJECT,
@@ -467,7 +467,7 @@ class NewEffectSupport:
             area_x2: Union[int, None] = None,
             area_y2: Union[int, None] = None,
             message: Union[str, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_NAME,
@@ -494,7 +494,7 @@ class NewEffectSupport:
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
             operation: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_HP,
@@ -524,7 +524,7 @@ class NewEffectSupport:
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
             operation: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_ATTACK,
@@ -552,7 +552,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.STOP_OBJECT,
@@ -580,7 +580,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.ATTACK_MOVE,
@@ -611,7 +611,7 @@ class NewEffectSupport:
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
             operation: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_ARMOR,
@@ -641,7 +641,7 @@ class NewEffectSupport:
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
             operation: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_RANGE,
@@ -669,7 +669,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_SPEED,
@@ -696,7 +696,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.HEAL_OBJECT,
@@ -724,7 +724,7 @@ class NewEffectSupport:
             area_y2: Union[int, None] = None,
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.TELEPORT_OBJECT,
@@ -752,7 +752,7 @@ class NewEffectSupport:
             object_group: Union[int, None] = None,
             object_type: Union[int, None] = None,
             attack_stance: Union[int, None] = None,
-            selected_object_ids: Union[int, List][int] | None = None,
+            selected_object_ids: Union[int, List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_STANCE,
@@ -791,7 +791,7 @@ class NewEffectSupport:
             self,
             object_list_unit_id: Union[int, None] = None,
             source_player: Union[int, None] = None,
-            enabled: Union[int | None] = None,
+            enabled: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.ENABLE_DISABLE_OBJECT,
@@ -802,9 +802,9 @@ class NewEffectSupport:
 
     def enable_disable_technology(
             self,
-            source_player: Union[int | None] = None,
-            technology: Union[int | None] = None,
-            enabled: Union[int | None] = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
+            enabled: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.ENABLE_DISABLE_TECHNOLOGY,
@@ -815,12 +815,12 @@ class NewEffectSupport:
 
     def change_object_cost(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            food: Union[int | None] = None,
-            wood: Union[int | None] = None,
-            stone: Union[int | None] = None,
-            gold: Union[int | None] = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            food: Union[int, None] = None,
+            wood: Union[int, None] = None,
+            stone: Union[int, None] = None,
+            gold: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_COST,
@@ -834,9 +834,9 @@ class NewEffectSupport:
 
     def set_player_visibility(
             self,
-            source_player: Union[int | None] = None,
-            target_player: Union[int | None] = None,
-            visibility_state: Union[int | None] = None,
+            source_player: Union[int, None] = None,
+            target_player: Union[int, None] = None,
+            visibility_state: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.SET_PLAYER_VISIBILITY,
@@ -847,16 +847,16 @@ class NewEffectSupport:
 
     def change_object_icon(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            object_group: Union[int | None] = None,
-            object_type: Union[int | None] = None,
-            object_list_unit_id_2: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            object_group: Union[int, None] = None,
+            object_type: Union[int, None] = None,
+            object_list_unit_id_2: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_ICON,
@@ -874,17 +874,17 @@ class NewEffectSupport:
 
     def replace_object(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            target_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            object_group: Union[int | None] = None,
-            object_type: Union[int | None] = None,
-            object_list_unit_id_2: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            target_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            object_group: Union[int, None] = None,
+            object_type: Union[int, None] = None,
+            object_list_unit_id_2: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.REPLACE_OBJECT,
@@ -903,10 +903,10 @@ class NewEffectSupport:
 
     def change_object_description(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            string_id: Union[int | None] = None,
-            message: Union[str | None] = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            string_id: Union[int, None] = None,
+            message: Union[str, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_DESCRIPTION,
@@ -918,9 +918,9 @@ class NewEffectSupport:
 
     def change_player_name(
             self,
-            source_player: Union[int | None] = None,
-            string_id: Union[int | None] = None,
-            message: Union[str | None] = None,
+            source_player: Union[int, None] = None,
+            string_id: Union[int, None] = None,
+            message: Union[str, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_PLAYER_NAME,
@@ -931,10 +931,10 @@ class NewEffectSupport:
 
     def change_train_location(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            object_list_unit_id_2: Union[int | None] = None,
-            button_location: Union[int | None] = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            object_list_unit_id_2: Union[int, None] = None,
+            button_location: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_TRAIN_LOCATION,
@@ -946,10 +946,10 @@ class NewEffectSupport:
 
     def change_research_location(
             self,
-            source_player: Union[int | None] = None,
-            technology: Union[int | None] = None,
-            object_list_unit_id_2: Union[int | None] = None,
-            button_location: Union[int | None] = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
+            object_list_unit_id_2: Union[int, None] = None,
+            button_location: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_RESEARCH_LOCATION,
@@ -961,9 +961,9 @@ class NewEffectSupport:
 
     def change_civilization_name(
             self,
-            source_player: Union[int | None] = None,
-            string_id: Union[int | None] = None,
-            message: Union[str | None] = None,
+            source_player: Union[int, None] = None,
+            string_id: Union[int, None] = None,
+            message: Union[str, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_CIVILIZATION_NAME,
@@ -974,14 +974,14 @@ class NewEffectSupport:
 
     def create_garrisoned_object(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            object_list_unit_id_2: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            object_list_unit_id_2: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CREATE_GARRISONED_OBJECT,
@@ -997,7 +997,7 @@ class NewEffectSupport:
 
     def acknowledge_ai_signal(
             self,
-            ai_signal_value: Union[int | None] = None,
+            ai_signal_value: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.ACKNOWLEDGE_AI_SIGNAL,
@@ -1006,14 +1006,14 @@ class NewEffectSupport:
 
     def modify_attribute(
             self,
-            quantity: Union[int | None] = None,
-            armour_attack_quantity: Union[int | None] = None,
-            armour_attack_class: Union[int | None] = None,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            operation: Union[int | None] = None,
-            object_attributes: Union[int | None] = None,
-            message: Union[str | None] = None,
+            quantity: Union[int, None] = None,
+            armour_attack_quantity: Union[int, None] = None,
+            armour_attack_class: Union[int, None] = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            operation: Union[int, None] = None,
+            object_attributes: Union[int, None] = None,
+            message: Union[str, None] = None,
     ) -> Effect:
         """
         The parameters 'armour_attack_quantity' and 'armour_attack_class' are only used when object_attributes is Armor
@@ -1036,10 +1036,10 @@ class NewEffectSupport:
 
     def modify_resource(
             self,
-            quantity: Union[int | None] = None,
-            tribute_list: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            operation: Union[int | None] = None,
+            quantity: Union[int, None] = None,
+            tribute_list: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            operation: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.MODIFY_RESOURCE,
@@ -1051,10 +1051,10 @@ class NewEffectSupport:
 
     def modify_resource_by_variable(
             self,
-            tribute_list: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            operation: Union[int | None] = None,
-            variable: Union[int | None] = None,
+            tribute_list: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            operation: Union[int, None] = None,
+            variable: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.MODIFY_RESOURCE_BY_VARIABLE,
@@ -1066,15 +1066,15 @@ class NewEffectSupport:
 
     def set_building_gather_point(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            location_x: Union[int | None] = None,
-            location_y: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            location_x: Union[int, None] = None,
+            location_y: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.SET_BUILDING_GATHER_POINT,
@@ -1091,8 +1091,8 @@ class NewEffectSupport:
 
     def script_call(
             self,
-            string_id: Union[int | None] = None,
-            message: Union[str | None] = None,
+            string_id: Union[int, None] = None,
+            message: Union[str, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.SCRIPT_CALL,
@@ -1102,10 +1102,10 @@ class NewEffectSupport:
 
     def change_variable(
             self,
-            quantity: Union[int | None] = None,
-            operation: Union[int | None] = None,
-            variable: Union[int | None] = None,
-            message: Union[str | None] = None,
+            quantity: Union[int, None] = None,
+            operation: Union[int, None] = None,
+            variable: Union[int, None] = None,
+            message: Union[str, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_VARIABLE,
@@ -1117,7 +1117,7 @@ class NewEffectSupport:
 
     def clear_timer(
             self,
-            timer: Union[int | None] = None,
+            timer: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CLEAR_TIMER,
@@ -1126,14 +1126,14 @@ class NewEffectSupport:
 
     def change_object_player_color(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            player_color: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            player_color: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_PLAYER_COLOR,
@@ -1149,13 +1149,13 @@ class NewEffectSupport:
 
     def change_object_civilization_name(
             self,
-            string_id: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            message: Union[str | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            string_id: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            message: Union[str, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_CIVILIZATION_NAME,
@@ -1170,15 +1170,15 @@ class NewEffectSupport:
 
     def change_object_player_name(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            string_id: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            message: Union[str | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            string_id: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            message: Union[str, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_OBJECT_PLAYER_NAME,
@@ -1195,13 +1195,13 @@ class NewEffectSupport:
 
     def disable_unit_targeting(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.DISABLE_UNIT_TARGETING,
@@ -1216,13 +1216,13 @@ class NewEffectSupport:
 
     def enable_unit_targeting(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.ENABLE_UNIT_TARGETING,
@@ -1237,12 +1237,12 @@ class NewEffectSupport:
 
     def change_technology_cost(
             self,
-            source_player: Union[int | None] = None,
-            technology: Union[int | None] = None,
-            food: Union[int | None] = None,
-            wood: Union[int | None] = None,
-            stone: Union[int | None] = None,
-            gold: Union[int | None] = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
+            food: Union[int, None] = None,
+            wood: Union[int, None] = None,
+            stone: Union[int, None] = None,
+            gold: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_TECHNOLOGY_COST,
@@ -1256,9 +1256,9 @@ class NewEffectSupport:
 
     def change_technology_research_time(
             self,
-            quantity: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            technology: Union[int | None] = None,
+            quantity: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_TECHNOLOGY_RESEARCH_TIME,
@@ -1269,10 +1269,10 @@ class NewEffectSupport:
 
     def change_technology_name(
             self,
-            source_player: Union[int | None] = None,
-            technology: Union[int | None] = None,
-            string_id: Union[int | None] = None,
-            message: Union[str | None] = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
+            string_id: Union[int, None] = None,
+            message: Union[str, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_TECHNOLOGY_NAME,
@@ -1284,10 +1284,10 @@ class NewEffectSupport:
 
     def change_technology_description(
             self,
-            source_player: Union[int | None] = None,
-            technology: Union[int | None] = None,
-            string_id: Union[int | None] = None,
-            message: Union[str | None] = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
+            string_id: Union[int, None] = None,
+            message: Union[str, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_TECHNOLOGY_DESCRIPTION,
@@ -1299,9 +1299,9 @@ class NewEffectSupport:
 
     def enable_technology_stacking(
             self,
-            source_player: Union[int | None] = None,
-            technology: Union[int | None] = None,
-            quantity: Union[int | None] = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
+            quantity: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.ENABLE_TECHNOLOGY_STACKING,
@@ -1312,8 +1312,8 @@ class NewEffectSupport:
 
     def disable_technology_stacking(
             self,
-            source_player: Union[int | None] = None,
-            technology: Union[int | None] = None,
+            source_player: Union[int, None] = None,
+            technology: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.DISABLE_TECHNOLOGY_STACKING,
@@ -1323,7 +1323,7 @@ class NewEffectSupport:
 
     def acknowledge_multiplayer_ai_signal(
             self,
-            ai_signal_value: Union[int | None] = None,
+            ai_signal_value: Union[int, None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.ACKNOWLEDGE_MULTIPLAYER_AI_SIGNAL,
@@ -1332,13 +1332,13 @@ class NewEffectSupport:
 
     def disable_object_selection(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.DISABLE_OBJECT_SELECTION,
@@ -1353,13 +1353,13 @@ class NewEffectSupport:
 
     def enable_object_selection(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
             EffectId.ENABLE_OBJECT_SELECTION,
@@ -1374,8 +1374,8 @@ class NewEffectSupport:
 
     def change_color_mood(
             self,
-            quantity: Union[int | None] = None,
-            color_mood: Union[int | None] = None):
+            quantity: Union[int, None] = None,
+            color_mood: Union[int, None] = None):
         return self._trigger_ref._add_effect(
             EffectId.CHANGE_COLOR_MOOD,
             quantity=quantity,
@@ -1384,14 +1384,14 @@ class NewEffectSupport:
 
     def enable_object_deletion(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            item_id: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            item_id: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ):
         return self._trigger_ref._add_effect(
             EffectId.ENABLE_OBJECT_DELETION,
@@ -1407,14 +1407,14 @@ class NewEffectSupport:
 
     def disable_object_deletion(
             self,
-            object_list_unit_id: Union[int | None] = None,
-            source_player: Union[int | None] = None,
-            area_x1: Union[int | None] = None,
-            area_y1: Union[int | None] = None,
-            area_x2: Union[int | None] = None,
-            area_y2: Union[int | None] = None,
-            item_id: Union[int | None] = None,
-            selected_object_ids: Union[int | List][int] | None = None,
+            object_list_unit_id: Union[int, None] = None,
+            source_player: Union[int, None] = None,
+            area_x1: Union[int, None] = None,
+            area_y1: Union[int, None] = None,
+            area_x2: Union[int, None] = None,
+            area_y2: Union[int, None] = None,
+            item_id: Union[int, None] = None,
+            selected_object_ids: Union[int,  List[int], None] = None,
     ):
         return self._trigger_ref._add_effect(
             EffectId.DISABLE_OBJECT_DELETION,

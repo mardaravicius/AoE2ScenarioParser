@@ -1,14 +1,13 @@
-
 import copy
 import math
 from enum import Enum
-from typing import Dict, TYPE_CHECKING, List, Tuple, Iterable, TypeVar, Type, Union
+from typing import Dict, TYPE_CHECKING, List, Tuple, Iterable, Type, Union
 from uuid import UUID
+
+from ordered_set import OrderedSet
 
 from AoE2ScenarioParser.helper.helper import xy_to_i, validate_coords
 from AoE2ScenarioParser.objects.support.tile import Tile
-from ordered_set import OrderedSet
-
 from AoE2ScenarioParser.scenarios.scenario_store import getters
 
 if TYPE_CHECKING:
@@ -21,8 +20,6 @@ if TYPE_CHECKING:
     OrderedSetTile: Type[OrderedSet[Tile]] = OrderedSet[Tile]
 
 
-
-
 class AreaState(Enum):
     """Enum to show the state of the Area object"""
     FULL = 0
@@ -32,7 +29,7 @@ class AreaState(Enum):
     CORNERS = 4
 
     @staticmethod
-    def unchunkables() -> List[AreaState]:
+    def unchunkables() -> List['AreaState']:
         """Returns the states that cannot be split into chunks"""
         return [AreaState.FULL, AreaState.EDGE]
 
@@ -59,8 +56,6 @@ class AreaAttr(Enum):
 
 
 class Area:
-    # Stored here so it won't be defined by each function call but also not to clutter the module scope.
-    _recursion_steps = [Tile(0, -1), Tile(1, 0), Tile(0, 1), Tile(-1, 0)]
     """Values used for recursion steps"""
 
     def __init__(self, map_size: int = None, uuid: UUID = None) -> None:
@@ -75,7 +70,6 @@ class Area:
         """
         if map_size is None and uuid is None:
             raise ValueError("Cannot create area object without knowing the map size or a UUID from a scenario.")
-        super().__init__()
 
         self.uuid: UUID = uuid
         if uuid is None:
@@ -135,7 +129,7 @@ class Area:
         self._y2 = value
 
     @classmethod
-    def from_uuid(cls, uuid: UUID) -> Area:
+    def from_uuid(cls, uuid: UUID) -> 'Area':
         return cls(uuid=uuid)
 
     @property
@@ -145,7 +139,7 @@ class Area:
         else:
             return self._map_size_value
 
-    def associate_scenario(self, scenario: AoE2Scenario) -> None:
+    def associate_scenario(self, scenario: 'AoE2Scenario') -> None:
         """
         Associate area with scenario. Saves scenario UUID in this area object.
 
@@ -161,7 +155,7 @@ class Area:
 
     # ============================ Conversion functions ============================
 
-    def to_coords(self, as_terrain: bool = False) -> OrderedSetTileOrTerrainTile:
+    def to_coords(self, as_terrain: bool = False) -> 'OrderedSetTileOrTerrainTile':
         """
         Converts the selection to an OrderedSet of (x, y) coordinates
 
@@ -186,7 +180,7 @@ class Area:
         )
         return self._tiles_to_terrain_tiles(tiles) if as_terrain else tiles
 
-    def to_chunks(self, as_terrain: bool = False) -> List[OrderedSetTileOrTerrainTile]:
+    def to_chunks(self, as_terrain: bool = False) -> List['OrderedSetTileOrTerrainTile']:
         """
         Converts the selection to a list of OrderedSets with Tile NamedTuples with (x, y) coordinates.
         The separation between chunks is based on if they're connected to each other.
@@ -211,7 +205,7 @@ class Area:
             chunks.setdefault(chunk_id, []).append(tile)
 
         map_size = self._map_size
-        chunks_ordered: List[OrderedSetTile] = []
+        chunks_ordered = []
         for chunk_id, chunk_tiles in chunks.items():
             tiles = self._tiles_to_terrain_tiles(chunk_tiles) if as_terrain else chunk_tiles
             chunks_ordered.append(
@@ -278,12 +272,12 @@ class Area:
 
     # ============================ Use functions ============================
 
-    def use_full(self) -> Area:
+    def use_full(self) -> 'Area':
         """Sets the area object to use the entire selection"""
         self.state = AreaState.FULL
         return self
 
-    def use_only_edge(self, line_width: int = None, line_width_x: int = None, line_width_y: int = None) -> Area:
+    def use_only_edge(self, line_width: int = None, line_width_x: int = None, line_width_y: int = None) -> 'Area':
         """
         Sets the area object to only use the edge of the selection
 
@@ -299,7 +293,7 @@ class Area:
         self.state = AreaState.EDGE
         return self
 
-    def use_only_corners(self, corner_size: int = None, corner_size_x: int = None, corner_size_y: int = None) -> Area:
+    def use_only_corners(self, corner_size: int = None, corner_size_x: int = None, corner_size_y: int = None) -> 'Area':
         """
         Sets the area object to only use the corners pattern within the selection.
 
@@ -323,7 +317,7 @@ class Area:
             block_size_y: int = None,
             gap_size_x: int = None,
             gap_size_y: int = None
-    ) -> Area:
+    ) -> 'Area':
         """
         Sets the area object to use a grid pattern within the selection.
 
@@ -344,7 +338,7 @@ class Area:
         self.state = AreaState.GRID
         return self
 
-    def use_pattern_lines(self, axis: str = None, gap_size: int = None, line_width: int = None) -> Area:
+    def use_pattern_lines(self, axis: str = None, gap_size: int = None, line_width: int = None) -> 'Area':
         """
         Sets the area object to use a lines pattern within the selection.
 
@@ -364,7 +358,7 @@ class Area:
 
     # ============================ Adjustment functions ============================
 
-    def invert(self) -> Area:
+    def invert(self) -> 'Area':
         """
         Inverts the inverted boolean. Causes the `to_coords` to return the inverted selection. (Especially useful for
         the grid state. Not as useful for the edge which would be the same as shrinking the selection. When used with
@@ -375,12 +369,12 @@ class Area:
         self.inverted = not self.inverted
         return self
 
-    def along_axis(self, axis: str) -> Area:
+    def along_axis(self, axis: str) -> 'Area':
         """Sets the axis. Can be either "x" or "y". """
         self.axis = axis
         return self
 
-    def attr(self, key: Union[str, AreaAttr], value: int) -> Area:
+    def attr(self, key: Union[str, AreaAttr], value: int) -> 'Area':
         """Sets the attribute to the given value. AreaAttr or str can be used as key"""
         if isinstance(key, AreaAttr):
             key = key.value
@@ -412,7 +406,7 @@ class Area:
             block_size: int = None,
             block_size_x: int = None,
             block_size_y: int = None,
-    ) -> Area:
+    ) -> 'Area':
         """
         Sets multiple attributes to the corresponding values.
 
@@ -425,7 +419,7 @@ class Area:
             self.attr(key, value)
         return self
 
-    def size(self, n: int) -> Area:
+    def size(self, n: int) -> 'Area':
         """
         Sets the selection to a size around the center. If center is (4,4) with a size of 3 the selection will become
         ``((3,3), (5,5))``
@@ -438,7 +432,7 @@ class Area:
         self.y2 = center_y + math.floor(n / 2)
         return self
 
-    def height(self, n: int) -> Area:
+    def height(self, n: int) -> 'Area':
         """
         Sets the height (y axis) of the selection. Shrinks/Expands both sides equally.
         If the expansion hits the edge of the map, it'll expand on the other side.
@@ -449,7 +443,7 @@ class Area:
         self.y2 = self._y2 + c2
         return self
 
-    def width(self, n: int) -> Area:
+    def width(self, n: int) -> 'Area':
         """
         Sets the width (x axis) of the selection. Shrinks/Expands both sides equally.
         If the expansion hits the edge of the map, it'll expand on the other side.
@@ -460,7 +454,7 @@ class Area:
         self.x2 = self._x2 + c2
         return self
 
-    def center(self, x: int, y: int) -> Area:
+    def center(self, x: int, y: int) -> 'Area':
         """
         Moves the selection center to a given position. When the given center forces the selection of the edge of the
         map the off-map tiles will not be returned. When moving the selection back into the map the tiles will be
@@ -476,7 +470,7 @@ class Area:
         self.y2 = self._y2 + diff_y
         return self
 
-    def center_bounded(self, x: int, y: int) -> Area:
+    def center_bounded(self, x: int, y: int) -> 'Area':
         """
         Moves the selection center to a given position on the map. This function makes sure it cannot go over the edge
         of the map. The selection will be forced against the edge of the map and the selection will not be decreased in
@@ -502,12 +496,12 @@ class Area:
         self.y2 += diff_y
         return self
 
-    def select_entire_map(self) -> Area:
+    def select_entire_map(self) -> 'Area':
         """Sets the selection to the entire map"""
         self.x1, self.y1, self.x2, self.y2 = 0, 0, self._map_size, self._map_size
         return self
 
-    def select(self, x1: int, y1: int, x2: int = None, y2: int = None) -> Area:
+    def select(self, x1: int, y1: int, x2: int = None, y2: int = None) -> 'Area':
         """Sets the selection to the given coordinates"""
         x2, y2 = self._negative_coord(x2, y2)
 
@@ -515,7 +509,7 @@ class Area:
 
         return self
 
-    def select_centered(self, x: int, y: int, dx: int = 1, dy: int = 1) -> Area:
+    def select_centered(self, x: int, y: int, dx: int = 1, dy: int = 1) -> 'Area':
         """Sets the selection to the given coordinates"""
         half_x, half_y = (dx - 1) / 2, (dy - 1) / 2
         self.select(
@@ -526,7 +520,7 @@ class Area:
         )
         return self
 
-    def shrink(self, n: int) -> Area:
+    def shrink(self, n: int) -> 'Area':
         """Shrinks the selection from all sides"""
         self.shrink_x1(n)
         self.shrink_y1(n)
@@ -534,27 +528,27 @@ class Area:
         self.shrink_y2(n)
         return self
 
-    def shrink_x1(self, n: int) -> Area:
+    def shrink_x1(self, n: int) -> 'Area':
         """Shrinks the selection from the first corner on the X axis by n"""
         self.x1 = min(self._x1 + n, self._x2)
         return self
 
-    def shrink_y1(self, n: int) -> Area:
+    def shrink_y1(self, n: int) -> 'Area':
         """Shrinks the selection from the first corner on the Y axis by n"""
         self.y1 = min(self._y1 + n, self._y2)
         return self
 
-    def shrink_x2(self, n: int) -> Area:
+    def shrink_x2(self, n: int) -> 'Area':
         """Shrinks the selection from the second corner on the X axis by n"""
         self.x2 = max(self._x1, self._x2 - n)
         return self
 
-    def shrink_y2(self, n: int) -> Area:
+    def shrink_y2(self, n: int) -> 'Area':
         """Shrinks the selection from the second corner on the Y axis by n"""
         self.y2 = max(self._y1, self._y2 - n)
         return self
 
-    def expand(self, n: int) -> Area:
+    def expand(self, n: int) -> 'Area':
         """Expands the selection from all sides"""
         self.expand_x1(n)
         self.expand_y1(n)
@@ -562,22 +556,22 @@ class Area:
         self.expand_y2(n)
         return self
 
-    def expand_x1(self, n: int) -> Area:
+    def expand_x1(self, n: int) -> 'Area':
         """Expands the selection from the first corner on the X axis by n"""
         self.x1 = self.x1 - n
         return self
 
-    def expand_y1(self, n: int) -> Area:
+    def expand_y1(self, n: int) -> 'Area':
         """Expands the selection from the first corner on the Y axis by n"""
         self.y1 = self.y1 - n
         return self
 
-    def expand_x2(self, n: int) -> Area:
+    def expand_x2(self, n: int) -> 'Area':
         """Expands the selection from the second corner on the X axis by n"""
         self.x2 = self.x2 + n
         return self
 
-    def expand_y2(self, n: int) -> Area:
+    def expand_y2(self, n: int) -> 'Area':
         """Expands the selection from the second corner on the Y axis by n"""
         self.y2 = self.y2 + n
         return self
@@ -617,7 +611,7 @@ class Area:
 
     # ============================ Miscellaneous functions ============================
 
-    def copy(self) -> Area:
+    def copy(self) -> 'Area':
         """
         Copy this instance of an Area. Useful for when you want to do multiple extractions (to_...) from the same source
         with small tweaks.

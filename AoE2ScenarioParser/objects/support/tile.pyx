@@ -5,3 +5,5 @@ class Tile(NamedTuple):
     """NamedTuple for tiles. use tile.x or tile.y for coord access"""
     x: int
     y: int
+
+    __annotations__ = {'x': int, 'y': int}
