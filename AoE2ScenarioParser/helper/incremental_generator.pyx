@@ -2,9 +2,13 @@
 from AoE2ScenarioParser.helper.exceptions import EndOfFileError
 
 
-class IncrementalGenerator:
+cdef class IncrementalGenerator:
     """Similar to an actual generator and is used to return the bytes of a file sequentially"""
-    def __init__(self, name: str, file_content: bytes, progress: int = 0):
+    cdef public str name
+    cdef public bytes file_content
+    cdef public int progress
+
+    def __init__(self, str name, bytes file_content, int progress = 0):
         """
         Args:
             name: The full file path of the file to create the generator for
@@ -12,11 +16,11 @@ class IncrementalGenerator:
             progress: Keeps track of how many bytes have been read from the generator.
         """
         self.name = name
-        self.file_content: bytes = file_content
+        self.file_content = file_content
         self.progress = progress
 
     @classmethod
-    def from_file(cls, filepath: str) -> 'IncrementalGenerator':
+    def from_file(cls, str filepath) -> 'IncrementalGenerator':
         """
         Creates and returns an instance of the IncrementalGenerator class from the given file
 
@@ -30,7 +34,7 @@ class IncrementalGenerator:
             file_content = f.read()
         return cls(filepath, file_content)
 
-    def get_bytes(self, n: int, update_progress: bool = True) -> bytes:
+    cpdef bytes get_bytes(self, int n, int update_progress = True):
         """
         Get the specified amount of next bytes
 
@@ -56,7 +60,7 @@ class IncrementalGenerator:
             self.progress += n
         return result
 
-    def get_remaining_bytes(self) -> bytes:
+    cpdef bytes get_remaining_bytes(self):
         """
         Get all the remaining bytes in the generator
 
