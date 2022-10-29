@@ -11,10 +11,14 @@ root_directory = Path(__file__).parent
 source_directory = root_directory / 'AoE2ScenarioParser'
 
 extensions = [
-    Extension(
+    *[Extension(
         name='.'.join(file.with_suffix("").relative_to(root_directory).parts),
         sources=[str(file)]
-    ) for file in source_directory.rglob("*.pyx")
+    ) for file in source_directory.rglob("*.pyx")],
+    *[Extension(
+        name='.'.join(file.with_suffix("").relative_to(root_directory).parts),
+        sources=[str(file)]
+    ) for file in source_directory.rglob("*.pxd")]
 ]
 
 setup(
