@@ -14,11 +14,7 @@ extensions = [
     *[Extension(
         name='.'.join(file.with_suffix("").relative_to(root_directory).parts),
         sources=[str(file)]
-    ) for file in source_directory.rglob("*.pyx")],
-    *[Extension(
-        name='.'.join(file.with_suffix("").relative_to(root_directory).parts),
-        sources=[str(file)]
-    ) for file in source_directory.rglob("*.pxd")]
+    ) for file in source_directory.rglob("*.pyx") if file.suffix in {'.pyx', '.pxd'}]
 ]
 
 setup(
