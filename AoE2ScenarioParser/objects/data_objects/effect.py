@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import List, Tuple, Any
 
 from AoE2ScenarioParser.datasets import effects
-from AoE2ScenarioParser.datasets.effects import EffectId
+from AoE2ScenarioParser.datasets.effects import EffectType
 from AoE2ScenarioParser.datasets.player_data import Player
 from AoE2ScenarioParser.datasets.trigger_data import ObjectAttribute
 from AoE2ScenarioParser.exceptions.asp_warnings import IncorrectArmorAttackUsageWarning
@@ -93,7 +93,7 @@ class Effect(AoE2Object, TriggerComponent):
 
     def __init__(
             self,
-            effect_type: int | EffectId = None,
+            effect_type: int | EffectType = None,
             ai_script_goal: int = None,
             armour_attack_quantity: int = None,
             armour_attack_class: int = None,
@@ -460,7 +460,7 @@ class Effect(AoE2Object, TriggerComponent):
 
 
 def _set_armour_attack_flag(effect_type, object_attributes) -> bool:
-    return (effect_type in [EffectId.CHANGE_OBJECT_ATTACK, EffectId.CHANGE_OBJECT_ARMOR]) or \
-        (effect_type == EffectId.MODIFY_ATTRIBUTE and object_attributes in [
+    return (effect_type in [EffectType.CHANGE_OBJECT_ATTACK, EffectType.CHANGE_OBJECT_ARMOR]) or \
+        (effect_type == EffectType.MODIFY_ATTRIBUTE and object_attributes in [
             ObjectAttribute.ATTACK, ObjectAttribute.ARMOR
         ])

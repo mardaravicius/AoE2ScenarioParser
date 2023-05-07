@@ -5,7 +5,7 @@ from typing import List, Any
 import AoE2ScenarioParser.datasets.conditions as condition_dataset
 import AoE2ScenarioParser.datasets.effects as effect_dataset
 from AoE2ScenarioParser.datasets.conditions import ConditionId
-from AoE2ScenarioParser.datasets.effects import EffectId
+from AoE2ScenarioParser.datasets.effects import EffectType
 from AoE2ScenarioParser.exceptions.asp_exceptions import UnsupportedAttributeError
 from AoE2ScenarioParser.helper.list_functions import list_changed, update_order_array, hash_list
 from AoE2ScenarioParser.helper.string_manipulations import add_tabs
@@ -159,7 +159,7 @@ class Trigger(AoE2Object, TriggerComponent):
         self.effect_order = list(range(0, len(val)))
 
     def _add_effect(
-            self, effect_type: EffectId, ai_script_goal=None, armour_attack_quantity=None, armour_attack_class=None,
+            self, effect_type: EffectType, ai_script_goal=None, armour_attack_quantity=None, armour_attack_class=None,
             quantity=None, tribute_list=None, diplomacy=None, object_list_unit_id=None, source_player=None,
             target_player=None, technology=None, string_id=None, display_time=None, trigger_id=None, location_x=None,
             location_y=None, location_object_reference=None, area_x1=None, area_y1=None, area_x2=None, area_y2=None,
@@ -178,7 +178,7 @@ class Trigger(AoE2Object, TriggerComponent):
             try:
                 return effect_dataset.default_attributes[eff_type]
             except KeyError:
-                effect = EffectId(eff_type)
+                effect = EffectType(eff_type)
                 raise UnsupportedAttributeError(
                     f"The effect {effect.name} is not supported in scenario version {sv}"
                 ) from None

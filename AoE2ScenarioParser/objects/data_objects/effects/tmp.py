@@ -11,7 +11,7 @@ class EffectType(IntEnum):
     >>> EffectType.RESEARCH_TECHNOLOGY
     >>> 2
     """
-    InvalidEffect = 0
+    NONE = 0
     """Attributes for the **none** effect are: \n
     ... none... Just like Conditions... People these days... """
     CHANGE_DIPLOMACY = 1
@@ -675,12 +675,3 @@ empty_attributes = {
     "sound_name": "",
     "selected_object_ids": -1,
 }
-
-# Set using the version json files
-effect_names = {}
-default_attributes = {}
-attributes = {}
-attribute_presentation = {}
-"""
-This dict maps the effect attributes by their name to the dataset used to represent them
-"""

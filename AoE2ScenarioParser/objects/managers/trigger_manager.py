@@ -4,7 +4,7 @@ import copy
 from enum import IntEnum
 from typing import List, Dict, Tuple, Optional
 
-from AoE2ScenarioParser.datasets.effects import EffectId
+from AoE2ScenarioParser.datasets.effects import EffectType
 from AoE2ScenarioParser.datasets.player_data import Player
 from AoE2ScenarioParser.helper import helper
 from AoE2ScenarioParser.helper.helper import value_is_valid, mutually_exclusive
@@ -471,7 +471,7 @@ class TriggerManager(AoE2Object):
         for trigger in new_triggers:
             activation_effects = [
                 effect for effect in trigger.effects if
-                effect.effect_type in [EffectId.ACTIVATE_TRIGGER, EffectId.DEACTIVATE_TRIGGER]
+                effect.effect_type in [EffectType.ACTIVATE_TRIGGER, EffectType.DEACTIVATE_TRIGGER]
             ]
             for effect in activation_effects:
                 effect.trigger_id = id_swap[effect.trigger_id]
@@ -832,7 +832,7 @@ class TriggerManager(AoE2Object):
         """Get all linked trigger ids from all (de)activation effects in a trigger"""
         return [
             effect.trigger_id for effect in trigger.effects if
-            effect.effect_type in [EffectId.ACTIVATE_TRIGGER, EffectId.DEACTIVATE_TRIGGER]
+            effect.effect_type in [EffectType.ACTIVATE_TRIGGER, EffectType.DEACTIVATE_TRIGGER]
         ]
 
     def __str__(self) -> str:
@@ -850,5 +850,5 @@ def _get_activation_effects(trigger: Trigger) -> List[Effect]:
         A list with (de)activation effects
     """
     return [eff for eff in trigger.effects if eff.effect_type in [
-        EffectId.ACTIVATE_TRIGGER, EffectId.DEACTIVATE_TRIGGER
+        EffectType.ACTIVATE_TRIGGER, EffectType.DEACTIVATE_TRIGGER
     ]]

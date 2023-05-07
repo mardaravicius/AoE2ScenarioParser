@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import List
 
-from AoE2ScenarioParser.datasets.effects import EffectId
+from AoE2ScenarioParser.datasets.effects import EffectType
 from AoE2ScenarioParser.objects.data_objects.effect import Effect
 
 
@@ -14,7 +14,7 @@ class NewEffectSupport:
             self,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.NONE,
+            EffectType.InvalidEffect,
         )
 
     def change_diplomacy(
@@ -24,7 +24,7 @@ class NewEffectSupport:
             target_player: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_DIPLOMACY,
+            EffectType.CHANGE_DIPLOMACY,
             diplomacy=diplomacy,
             source_player=source_player,
             target_player=target_player,
@@ -37,7 +37,7 @@ class NewEffectSupport:
             force_research_technology: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.RESEARCH_TECHNOLOGY,
+            EffectType.RESEARCH_TECHNOLOGY,
             source_player=source_player,
             technology=technology,
             force_research_technology=force_research_technology,
@@ -51,7 +51,7 @@ class NewEffectSupport:
             sound_name: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.SEND_CHAT,
+            EffectType.SEND_CHAT,
             source_player=source_player,
             string_id=string_id,
             message=message,
@@ -67,7 +67,7 @@ class NewEffectSupport:
             sound_name: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.PLAY_SOUND,
+            EffectType.PLAY_SOUND,
             source_player=source_player,
             location_x=location_x,
             location_y=location_y,
@@ -83,7 +83,7 @@ class NewEffectSupport:
             target_player: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.TRIBUTE,
+            EffectType.TRIBUTE,
             quantity=quantity,
             tribute_list=tribute_list,
             source_player=source_player,
@@ -95,7 +95,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.UNLOCK_GATE,
+            EffectType.UNLOCK_GATE,
             selected_object_ids=selected_object_ids,
         )
 
@@ -104,7 +104,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.LOCK_GATE,
+            EffectType.LOCK_GATE,
             selected_object_ids=selected_object_ids,
         )
 
@@ -113,7 +113,7 @@ class NewEffectSupport:
             trigger_id: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.ACTIVATE_TRIGGER,
+            EffectType.ACTIVATE_TRIGGER,
             trigger_id=trigger_id,
         )
 
@@ -122,7 +122,7 @@ class NewEffectSupport:
             trigger_id: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.DEACTIVATE_TRIGGER,
+            EffectType.DEACTIVATE_TRIGGER,
             trigger_id=trigger_id,
         )
 
@@ -131,7 +131,7 @@ class NewEffectSupport:
             ai_script_goal: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.AI_SCRIPT_GOAL,
+            EffectType.AI_SCRIPT_GOAL,
             ai_script_goal=ai_script_goal,
         )
 
@@ -144,7 +144,7 @@ class NewEffectSupport:
             facet: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CREATE_OBJECT,
+            EffectType.CREATE_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             location_x=location_x,
@@ -169,7 +169,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.TASK_OBJECT,
+            EffectType.TASK_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             location_x=location_x,
@@ -191,7 +191,7 @@ class NewEffectSupport:
             enabled: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.DECLARE_VICTORY,
+            EffectType.DECLARE_VICTORY,
             source_player=source_player,
             enabled=enabled,
         )
@@ -209,7 +209,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.KILL_OBJECT,
+            EffectType.KILL_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -235,7 +235,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.REMOVE_OBJECT,
+            EffectType.REMOVE_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -257,7 +257,7 @@ class NewEffectSupport:
             scroll: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_VIEW,
+            EffectType.CHANGE_VIEW,
             quantity=quantity,
             source_player=source_player,
             location_x=location_x,
@@ -281,7 +281,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.UNLOAD,
+            EffectType.UNLOAD,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             location_x=location_x,
@@ -311,7 +311,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OWNERSHIP,
+            EffectType.CHANGE_OWNERSHIP,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             target_player=target_player,
@@ -340,7 +340,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.PATROL,
+            EffectType.PATROL,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             location_x=location_x,
@@ -366,7 +366,7 @@ class NewEffectSupport:
             sound_name: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.DISPLAY_INSTRUCTIONS,
+            EffectType.DISPLAY_INSTRUCTIONS,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             string_id=string_id,
@@ -382,7 +382,7 @@ class NewEffectSupport:
             instruction_panel_position: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CLEAR_INSTRUCTIONS,
+            EffectType.CLEAR_INSTRUCTIONS,
             instruction_panel_position=instruction_panel_position,
         )
 
@@ -399,7 +399,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.FREEZE_OBJECT,
+            EffectType.FREEZE_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -415,7 +415,7 @@ class NewEffectSupport:
             self,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.USE_ADVANCED_BUTTONS,
+            EffectType.USE_ADVANCED_BUTTONS,
         )
 
     def damage_object(
@@ -432,7 +432,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.DAMAGE_OBJECT,
+            EffectType.DAMAGE_OBJECT,
             quantity=quantity,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
@@ -453,7 +453,7 @@ class NewEffectSupport:
             location_y: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.PLACE_FOUNDATION,
+            EffectType.PLACE_FOUNDATION,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             location_x=location_x,
@@ -473,7 +473,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_NAME,
+            EffectType.CHANGE_OBJECT_NAME,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             string_id=string_id,
@@ -500,7 +500,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_HP,
+            EffectType.CHANGE_OBJECT_HP,
             quantity=quantity,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
@@ -530,7 +530,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_ATTACK,
+            EffectType.CHANGE_OBJECT_ATTACK,
             armour_attack_quantity=armour_attack_quantity,
             armour_attack_class=armour_attack_class,
             object_list_unit_id=object_list_unit_id,
@@ -558,7 +558,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.STOP_OBJECT,
+            EffectType.STOP_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -586,7 +586,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.ATTACK_MOVE,
+            EffectType.ATTACK_MOVE,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             location_x=location_x,
@@ -617,7 +617,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_ARMOR,
+            EffectType.CHANGE_OBJECT_ARMOR,
             armour_attack_quantity=armour_attack_quantity,
             armour_attack_class=armour_attack_class,
             object_list_unit_id=object_list_unit_id,
@@ -647,7 +647,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_RANGE,
+            EffectType.CHANGE_OBJECT_RANGE,
             quantity=quantity,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
@@ -675,7 +675,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_SPEED,
+            EffectType.CHANGE_OBJECT_SPEED,
             quantity=quantity,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
@@ -702,7 +702,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.HEAL_OBJECT,
+            EffectType.HEAL_OBJECT,
             quantity=quantity,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
@@ -730,7 +730,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.TELEPORT_OBJECT,
+            EffectType.TELEPORT_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             location_x=location_x,
@@ -758,7 +758,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_STANCE,
+            EffectType.CHANGE_OBJECT_STANCE,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -781,7 +781,7 @@ class NewEffectSupport:
             message: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.DISPLAY_TIMER,
+            EffectType.DISPLAY_TIMER,
             string_id=string_id,
             display_time=display_time,
             time_unit=time_unit,
@@ -797,7 +797,7 @@ class NewEffectSupport:
             enabled: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.ENABLE_DISABLE_OBJECT,
+            EffectType.ENABLE_DISABLE_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             enabled=enabled,
@@ -810,7 +810,7 @@ class NewEffectSupport:
             enabled: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.ENABLE_DISABLE_TECHNOLOGY,
+            EffectType.ENABLE_DISABLE_TECHNOLOGY,
             source_player=source_player,
             technology=technology,
             enabled=enabled,
@@ -826,7 +826,7 @@ class NewEffectSupport:
             gold: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_COST,
+            EffectType.CHANGE_OBJECT_COST,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             food=food,
@@ -842,7 +842,7 @@ class NewEffectSupport:
             visibility_state: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.SET_PLAYER_VISIBILITY,
+            EffectType.SET_PLAYER_VISIBILITY,
             source_player=source_player,
             target_player=target_player,
             visibility_state=visibility_state,
@@ -862,7 +862,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_ICON,
+            EffectType.CHANGE_OBJECT_ICON,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -890,7 +890,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.REPLACE_OBJECT,
+            EffectType.REPLACE_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             target_player=target_player,
@@ -912,7 +912,7 @@ class NewEffectSupport:
             message: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_DESCRIPTION,
+            EffectType.CHANGE_OBJECT_DESCRIPTION,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             string_id=string_id,
@@ -926,7 +926,7 @@ class NewEffectSupport:
             message: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_PLAYER_NAME,
+            EffectType.CHANGE_PLAYER_NAME,
             source_player=source_player,
             string_id=string_id,
             message=message,
@@ -940,7 +940,7 @@ class NewEffectSupport:
             button_location: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_TRAIN_LOCATION,
+            EffectType.CHANGE_TRAIN_LOCATION,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             object_list_unit_id_2=object_list_unit_id_2,
@@ -955,7 +955,7 @@ class NewEffectSupport:
             button_location: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_RESEARCH_LOCATION,
+            EffectType.CHANGE_RESEARCH_LOCATION,
             source_player=source_player,
             technology=technology,
             object_list_unit_id_2=object_list_unit_id_2,
@@ -969,7 +969,7 @@ class NewEffectSupport:
             message: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_CIVILIZATION_NAME,
+            EffectType.CHANGE_CIVILIZATION_NAME,
             source_player=source_player,
             string_id=string_id,
             message=message,
@@ -987,7 +987,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CREATE_GARRISONED_OBJECT,
+            EffectType.CREATE_GARRISONED_OBJECT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -1003,7 +1003,7 @@ class NewEffectSupport:
             ai_signal_value: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.ACKNOWLEDGE_AI_SIGNAL,
+            EffectType.ACKNOWLEDGE_AI_SIGNAL,
             ai_signal_value=ai_signal_value,
         )
 
@@ -1026,7 +1026,7 @@ class NewEffectSupport:
             raise ValueError("Cannot use 'armour_attack' attributes together with the 'quantity' attribute.")
 
         return self._trigger_ref._add_effect(
-            EffectId.MODIFY_ATTRIBUTE,
+            EffectType.MODIFY_ATTRIBUTE,
             quantity=quantity,
             armour_attack_quantity=armour_attack_quantity,
             armour_attack_class=armour_attack_class,
@@ -1045,7 +1045,7 @@ class NewEffectSupport:
             operation: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.MODIFY_RESOURCE,
+            EffectType.MODIFY_RESOURCE,
             quantity=quantity,
             tribute_list=tribute_list,
             source_player=source_player,
@@ -1060,7 +1060,7 @@ class NewEffectSupport:
             variable: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.MODIFY_RESOURCE_BY_VARIABLE,
+            EffectType.MODIFY_RESOURCE_BY_VARIABLE,
             tribute_list=tribute_list,
             source_player=source_player,
             operation=operation,
@@ -1080,7 +1080,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.SET_BUILDING_GATHER_POINT,
+            EffectType.SET_BUILDING_GATHER_POINT,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             location_x=location_x,
@@ -1098,7 +1098,7 @@ class NewEffectSupport:
             message: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.SCRIPT_CALL,
+            EffectType.SCRIPT_CALL,
             string_id=string_id,
             message=message,
         )
@@ -1111,7 +1111,7 @@ class NewEffectSupport:
             message: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_VARIABLE,
+            EffectType.CHANGE_VARIABLE,
             quantity=quantity,
             operation=operation,
             variable=variable,
@@ -1123,7 +1123,7 @@ class NewEffectSupport:
             timer: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CLEAR_TIMER,
+            EffectType.CLEAR_TIMER,
             timer=timer,
         )
 
@@ -1139,7 +1139,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_PLAYER_COLOR,
+            EffectType.CHANGE_OBJECT_PLAYER_COLOR,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -1161,7 +1161,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_CIVILIZATION_NAME,
+            EffectType.CHANGE_OBJECT_CIVILIZATION_NAME,
             string_id=string_id,
             area_x1=area_x1,
             area_y1=area_y1,
@@ -1184,7 +1184,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_OBJECT_PLAYER_NAME,
+            EffectType.CHANGE_OBJECT_PLAYER_NAME,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             string_id=string_id,
@@ -1207,7 +1207,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.DISABLE_UNIT_TARGETING,
+            EffectType.DISABLE_UNIT_TARGETING,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -1228,7 +1228,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.ENABLE_UNIT_TARGETING,
+            EffectType.ENABLE_UNIT_TARGETING,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -1248,7 +1248,7 @@ class NewEffectSupport:
             gold: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_TECHNOLOGY_COST,
+            EffectType.CHANGE_TECHNOLOGY_COST,
             source_player=source_player,
             technology=technology,
             food=food,
@@ -1264,7 +1264,7 @@ class NewEffectSupport:
             technology: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_TECHNOLOGY_RESEARCH_TIME,
+            EffectType.CHANGE_TECHNOLOGY_RESEARCH_TIME,
             quantity=quantity,
             source_player=source_player,
             technology=technology,
@@ -1278,7 +1278,7 @@ class NewEffectSupport:
             message: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_TECHNOLOGY_NAME,
+            EffectType.CHANGE_TECHNOLOGY_NAME,
             source_player=source_player,
             technology=technology,
             string_id=string_id,
@@ -1293,7 +1293,7 @@ class NewEffectSupport:
             message: str | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_TECHNOLOGY_DESCRIPTION,
+            EffectType.CHANGE_TECHNOLOGY_DESCRIPTION,
             source_player=source_player,
             technology=technology,
             string_id=string_id,
@@ -1307,7 +1307,7 @@ class NewEffectSupport:
             quantity: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.ENABLE_TECHNOLOGY_STACKING,
+            EffectType.ENABLE_TECHNOLOGY_STACKING,
             source_player=source_player,
             technology=technology,
             quantity=quantity,
@@ -1319,7 +1319,7 @@ class NewEffectSupport:
             technology: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.DISABLE_TECHNOLOGY_STACKING,
+            EffectType.DISABLE_TECHNOLOGY_STACKING,
             source_player=source_player,
             technology=technology,
         )
@@ -1329,7 +1329,7 @@ class NewEffectSupport:
             ai_signal_value: int | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.ACKNOWLEDGE_MULTIPLAYER_AI_SIGNAL,
+            EffectType.ACKNOWLEDGE_MULTIPLAYER_AI_SIGNAL,
             ai_signal_value=ai_signal_value,
         )
 
@@ -1344,7 +1344,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.DISABLE_OBJECT_SELECTION,
+            EffectType.DISABLE_OBJECT_SELECTION,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -1365,7 +1365,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ) -> Effect:
         return self._trigger_ref._add_effect(
-            EffectId.ENABLE_OBJECT_SELECTION,
+            EffectType.ENABLE_OBJECT_SELECTION,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -1380,7 +1380,7 @@ class NewEffectSupport:
             quantity: int | None = None,
             color_mood: int | None = None):
         return self._trigger_ref._add_effect(
-            EffectId.CHANGE_COLOR_MOOD,
+            EffectType.CHANGE_COLOR_MOOD,
             quantity=quantity,
             color_mood=color_mood
         )
@@ -1397,7 +1397,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ):
         return self._trigger_ref._add_effect(
-            EffectId.ENABLE_OBJECT_DELETION,
+            EffectType.ENABLE_OBJECT_DELETION,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
@@ -1420,7 +1420,7 @@ class NewEffectSupport:
             selected_object_ids: int | List[int] | None = None,
     ):
         return self._trigger_ref._add_effect(
-            EffectId.DISABLE_OBJECT_DELETION,
+            EffectType.DISABLE_OBJECT_DELETION,
             object_list_unit_id=object_list_unit_id,
             source_player=source_player,
             area_x1=area_x1,
